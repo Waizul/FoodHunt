@@ -1,8 +1,10 @@
 import CssBaseline from "@mui/material/CssBaseline/CssBaseline";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { createContext, useMemo, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { themeSettings } from "./theme";
+import { themeSettings } from "./styles/theme";
+import { Home } from "./pages";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -24,7 +26,13 @@ function App() {
 		<div className='app'>
 			<ColorModeContext.Provider value={colorMode}>
 				<CssBaseline />
-				<ThemeProvider theme={theme}></ThemeProvider>
+				<ThemeProvider theme={theme}>
+					<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<Home />} /> 
+					</Routes>
+					</BrowserRouter>
+				</ThemeProvider>
 			</ColorModeContext.Provider>
 		</div>
 	);

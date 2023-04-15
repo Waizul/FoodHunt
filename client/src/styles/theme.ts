@@ -1,4 +1,3 @@
-import { dark } from "@mui/material/styles/createPalette";
 import { PaletteMode } from "@mui/material";
 
 export const tokens = {
@@ -14,17 +13,28 @@ export const tokens = {
 		900: "#242427",
 	},
 	primary: {
-		// light green
-		100: "#d0fcf4",
-		200: "#a0f9e9",
-		300: "#71f5de",
-		400: "#41f2d3",
-		500: "#12efc8",
-		600: "#0ebfa0",
-		700: "#0b8f78",
-		800: "#076050",
-		900: "#043028",
+		100: "#ffcccc",
+		200: "#ff9999",
+		300: "#ff6666",
+		400: "#ff3333",
+		500: "#ff0000",
+		600: "#cc0000",
+		700: "#990000",
+		800: "#660000",
+		900: "#330000",
 	},
+	// primary: {
+	// 	// light green
+	// 	100: "#d0fcf4",
+	// 	200: "#a0f9e9",
+	// 	300: "#71f5de",
+	// 	400: "#41f2d3",
+	// 	500: "#12efc8",
+	// 	600: "#0ebfa0",
+	// 	700: "#0b8f78",
+	// 	800: "#076050",
+	// 	900: "#043028",
+	// },
 	secondary: {
 		// yellow
 		100: "#fcf0dd",
