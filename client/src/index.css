@@ -13,8 +13,17 @@ img {
 	display: block;
 	width: 100%;
 }
+
+.section {
+	width: 100%;
+	max-width: 1024px;
+	margin: auto;
+}
+
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 8px;
+	/* height: 3px; */
+	/* display: none; */
 }
 
 ::-webkit-scrollbar-track {
