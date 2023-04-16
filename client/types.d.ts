@@ -12,3 +12,10 @@ type Item = {
 	image: string;
 	ingredients:string[]
 };
+
+type Menu = {
+	open: boolean
+	anchorEl:HTMLElement | null
+	handleClose: () => void
+	handleClick: (event: React.MouseEvent<HTMLElement>) => void
+}

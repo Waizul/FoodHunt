@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { themeSettings } from "./styles/theme";
 import { Home } from "./pages";
+import { Navbar } from "./sections";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -28,6 +29,7 @@ function App() {
 				<CssBaseline />
 				<ThemeProvider theme={theme}>
 					<BrowserRouter>
+					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} /> 
 					</Routes>

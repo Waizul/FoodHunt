@@ -13,4 +13,11 @@ declare module "@mui/material/styles" {
 	interface PaletteOptions {
 		tertiary?: PaletteColorOptions
 	}
+
+	interface BreakpointOverrides {
+    mobile: true;
+    tablet: true;
+    laptop: true;
+    desktop: true;
+  }
 }

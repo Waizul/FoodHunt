@@ -1,4 +1,4 @@
 import Header from "./header/Header";
 import Foods from "./foods/Foods";
-
-export { Header, Foods };
+import Navbar from "./navbar/Navbar";
+export { Header, Foods, Navbar };

@@ -56,6 +56,14 @@ export const tokens = {
 		white: "#fff",
 		main: "#1f2026",
 	},
+	breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1200,
+    },
+  },
 };
 
 // mui theme settings
@@ -135,4 +143,7 @@ export const themeSettings = (mode: PaletteMode) => ({
 			color: tokens.grey[700],
 		},
 	},
+	breakpoints: {
+		...tokens.breakpoints
+	}
 });
