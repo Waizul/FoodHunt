@@ -34,6 +34,7 @@ const Foods = (props: Props) => {
 
 			<Box
 				sx={{
+					paddingInline: 2,
 					display: "flex",
 					gap: 2,
 					flexWrap: "wrap",

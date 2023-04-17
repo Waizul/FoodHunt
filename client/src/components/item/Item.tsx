@@ -1,24 +1,49 @@
-import { Box } from "@mui/material";
-import axios from "axios";
-import { useEffect } from "react";
+import { styled } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
 	item: Item;
 };
 
+const Card = styled("div")(({ theme }) => ({
+	minWidth: 280,
+	paddingBottom: 2,
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	justifyContent: "center",
+	transition: 'all .3s',
+	img: {
+		width: "200px",
+		height: "200px",
+		objectFit: "contain",
+	},
+	'&:hover': {
+		transform: "scale(1.03)"
+	}
+}));
+
 const Item = ({ item }: Props) => {
+	const navigate = useNavigate();
 	return (
-		<Box sx={{ flex: "25%" }}>
-			{item.title}
-			<img
-				src={item.image}
-				alt={item.title}
-				width={300}
-				height={200}
-				style={{
-					objectFit: "contain",
-				}}
-			/>
+		<Box
+			sx={{
+				flex: "25%",
+				cursor: "pointer",
+				transition: 'all 0.3s',
+				"&:hover": {
+					boxShadow: 19,
+					transform: "scale(1.05)"
+				},
+			}}
+			onClick={() => navigate(`/${item.category}/${item.id}`)}
+		>
+			<Card sx={{}}>
+				<img src={item.image} alt={item.title} />
+				<Typography>{item.title}</Typography>
+				<Typography>200 BDT</Typography>
+			</Card>
 		</Box>
 	);
 };
