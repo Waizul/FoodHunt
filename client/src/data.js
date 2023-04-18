@@ -1,3 +1,21 @@
+export const features = [
+	{
+		title: "Quality",
+		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum totam sed ducimus vel? Repudiandae eveniet, expedita ipsam adipisci quo aut velit totam amet eligendi. Tenetur facilis eligendi repudiandae aut eos!",
+		image: "/assets/features/tasty.png",
+	},
+	{
+		title: "Fast Delivery",
+		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum totam sed ducimus vel? Repudiandae eveniet, expedita ipsam adipisci quo aut velit totam amet eligendi. Tenetur facilis eligendi repudiandae aut eos!",
+		image: "/assets/features/delivery-bike.png",
+	},
+	{
+		title: "Home Delivery",
+		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum totam sed ducimus vel? Repudiandae eveniet, expedita ipsam adipisci quo aut velit totam amet eligendi. Tenetur facilis eligendi repudiandae aut eos!",
+		image: "/assets/features/delivery-man.png",
+	},
+];
+
 export const foodItems = [
 	{
 		id: 1,

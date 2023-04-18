@@ -18,8 +18,6 @@ import {
 import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
 
-type Props = {};
-
 const Nav = styled("nav")(({ theme }) => ({
 	width: "100%",
 	maxWidth: "1024px",
@@ -35,12 +33,12 @@ const NavItem = styled(MenuItem)(({ theme }) => ({
 	padding: 0,
 	marginLeft: "10px",
 	"&:hover": {
-		color: theme.palette.primary[500],
+		color: theme.palette.primary[800],
 		boxShadow: "none",
 	},
 }));
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up("tablet"));
 
@@ -65,7 +63,7 @@ const Navbar = (props: Props) => {
 				<Stack direction={"row"} alignItems={"center"} spacing={4}>
 					{matches && (
 						<>
-							<NavItem sx={{}}>Breakfast</NavItem>
+							<NavItem>Breakfast</NavItem>
 							<NavItem>Lunch</NavItem>
 							<NavItem>Dinner</NavItem>
 						</>
@@ -74,6 +72,7 @@ const Navbar = (props: Props) => {
 					<Box
 						sx={{
 							position: "relative",
+							top: 4,
 						}}
 					>
 						<ShoppingCartOutlined />
@@ -93,6 +92,80 @@ const Navbar = (props: Props) => {
 							10
 						</Box>
 					</Box>
+
+					{matches && (
+						<>
+							<Box
+								sx={{
+									display: "flex",
+									alignItems: "center",
+									textAlign: "center",
+								}}
+							>
+								<Tooltip title='Account'>
+									<IconButton
+										onClick={handleClick}
+										size='small'
+										aria-controls={open ? "account-menu" : undefined}
+										aria-haspopup='true'
+										aria-expanded={open ? "true" : undefined}
+									>
+										<Avatar sx={{ width: 30, height: 30, p: 0 }}></Avatar>
+									</IconButton>
+								</Tooltip>
+							</Box>
+							<Menu
+								anchorEl={anchorEl}
+								id='nav-menu'
+								open={open}
+								onClose={handleClose}
+								onClick={handleClose}
+								sx={{}}
+								PaperProps={{
+									elevation: 0,
+									sx: {
+										width: 200,
+										margin: "auto",
+										overflow: "visible",
+										filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+										mt: 1.5,
+										"& .MuiAvatar-root": {
+											width: 30,
+											height: 30,
+											ml: -0.5,
+											mr: 1,
+										},
+										"&:before": {
+											content: '""',
+											display: "block",
+											position: "absolute",
+											top: 0,
+											right: 14,
+											width: 10,
+											height: 10,
+
+											transform: "translateY(-50%) rotate(45deg)",
+											zIndex: 0,
+										},
+									},
+								}}
+								transformOrigin={{ horizontal: "right", vertical: "top" }}
+								anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+							>
+								<NavItem onClick={handleClose}>
+									<Avatar /> My Orders
+								</NavItem>
+								<NavItem onClick={handleClose}>
+									<Avatar /> My account
+								</NavItem>
+
+								<NavItem onClick={handleClose}>
+									<Logout fontSize='small' sx={{ mr: 2 }} />
+									Logout
+								</NavItem>
+							</Menu>
+						</>
+					)}
 
 					{!matches && (
 						<>

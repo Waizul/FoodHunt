@@ -1,4 +1,4 @@
-import { Foods, Header } from "@/sections";
+import { Features, Foods, Header } from "@/sections";
 
 type Props = {};
 
@@ -7,6 +7,7 @@ const Home = (props: Props) => {
 		<div>
 			<Header />
 			<Foods />
+			<Features />
 		</div>
 	);
 };
