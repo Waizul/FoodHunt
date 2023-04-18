@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 export const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 	color: "white",
@@ -11,4 +12,12 @@ export const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.primary[800],
 		backgroundColor: "transparent",
 	},
+}));
+
+export const StyledLink = styled(Link)(({ theme }) => ({
+	color: "inherit",
+	textDecoration:'none',
+	'&:hover':{
+		color: theme.palette.primary[800]
+	}
 }));
