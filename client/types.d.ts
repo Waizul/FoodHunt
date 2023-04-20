@@ -23,5 +23,5 @@ type Menu = {
 type Feature = {
 	title: string;
 	desc: string;
-	imgage: string;
+	image: string;
 };

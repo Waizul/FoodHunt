@@ -10,13 +10,14 @@ import {
 	Divider,
 	IconButton,
 	Menu,
-	MenuItem,
 	Stack,
 	Tooltip,
 	useMediaQuery,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
+
+import { StyledLink } from "@/styles";
 
 const Nav = styled("nav")(({ theme }) => ({
 	width: "100%",
@@ -28,14 +29,15 @@ const Nav = styled("nav")(({ theme }) => ({
 	},
 }));
 
-const NavItem = styled(MenuItem)(({ theme }) => ({
+const NavItem = styled("li")(({ theme }) => ({
 	fontWeight: 500,
 	padding: 0,
 	marginLeft: "10px",
-	"&:hover": {
-		color: theme.palette.primary[800],
-		boxShadow: "none",
-	},
+	cursor: "pointer",
+	listStyleType: "none",
+	display: "flex",
+	alignItems: "center",
+	paddingBottom: theme.breakpoints.down('tablet') ? 5 : 0
 }));
 
 const Navbar = () => {
@@ -59,13 +61,21 @@ const Navbar = () => {
 				justifyContent={"space-between"}
 				height={"100%"}
 			>
-				<Box sx={{ cursor: "pointer", fontWeight: 700 }}>FoodHunt</Box>
+				<Box sx={{ cursor: "pointer", fontWeight: 700 }}>
+					<StyledLink to={"/"}>FoodHunt</StyledLink>
+				</Box>
 				<Stack direction={"row"} alignItems={"center"} spacing={4}>
 					{matches && (
 						<>
-							<NavItem>Breakfast</NavItem>
-							<NavItem>Lunch</NavItem>
-							<NavItem>Dinner</NavItem>
+							<NavItem>
+								<StyledLink to={"/category/breakfast"}>Breakfast</StyledLink>
+							</NavItem>
+							<NavItem>
+								<StyledLink to={"/category/lunch"}>Lunch</StyledLink>
+							</NavItem>
+							<NavItem>
+								<StyledLink to={"/category/dinner"}>Dinner</StyledLink>
+							</NavItem>
 						</>
 					)}
 
@@ -153,10 +163,14 @@ const Navbar = () => {
 								anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 							>
 								<NavItem onClick={handleClose}>
-									<Avatar /> My Orders
+									<StyledLink to='/orders'>
+										<Avatar /> My Orders
+									</StyledLink>
 								</NavItem>
 								<NavItem onClick={handleClose}>
-									<Avatar /> My account
+									<StyledLink to='/accoount'>
+										<Avatar /> My account
+									</StyledLink>
 								</NavItem>
 
 								<NavItem onClick={handleClose}>
@@ -228,24 +242,34 @@ const Navbar = () => {
 								anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 							>
 								<NavItem onClick={handleClose}>
-									<ArrowRightAlt fontSize='small' sx={{ mr: 1 }} />
-									Breakfast
+									<StyledLink to={"/breakfast"}>
+										<ArrowRightAlt fontSize='small' sx={{ mr: 1 }} />
+										Breakfast
+									</StyledLink>
 								</NavItem>
 								<NavItem onClick={handleClose}>
-									<ArrowRightAlt fontSize='small' sx={{ mr: 1 }} />
-									Lunch
+									<StyledLink to={"/lunch"}>
+										<ArrowRightAlt fontSize='small' sx={{ mr: 1 }} />
+										Lunch
+									</StyledLink>
 								</NavItem>
 								<NavItem onClick={handleClose}>
-									<ArrowRightAlt fontSize='small' sx={{ mr: 1 }} />
-									Dinner
+									<StyledLink to={"/dinner"}>
+										<ArrowRightAlt fontSize='small' sx={{ mr: 1 }} />
+										Dinner
+									</StyledLink>
 								</NavItem>
 
-								<Divider />
+								<Divider sx={{ mb: 1 }} />
 								<NavItem onClick={handleClose}>
-									<Avatar /> My Orders
+									<StyledLink to='/orders'>
+										<Avatar /> My Orders
+									</StyledLink>
 								</NavItem>
 								<NavItem onClick={handleClose}>
-									<Avatar sx={{ width: 20, height: 20 }} /> My account
+									<StyledLink to='/accoount'>
+										<Avatar sx={{ width: 20, height: 20 }} /> My account
+									</StyledLink>
 								</NavItem>
 
 								<NavItem onClick={handleClose}>

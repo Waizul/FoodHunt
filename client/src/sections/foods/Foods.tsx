@@ -17,6 +17,7 @@ const Foods = (props: Props) => {
 		);
 		setItems(filteredItems);
 	}, [category]);
+	
 	return (
 		<section className='section'>
 			<Box

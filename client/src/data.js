@@ -23,7 +23,7 @@ export const foodItems = [
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
 		ingredients: ["butter, bread, egg"],
-		image: "/assets/Breakfast/breakfast1.png",
+		image: "/assets/Breakfast/breakfast2.png",
 	},
 	{
 		id: 2,

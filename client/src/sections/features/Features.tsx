@@ -31,7 +31,7 @@ const Features = () => {
 						columns={{ mobile: 4, tablet: 8, laptop: 12 }}
 					>
 						{features.map((feature: Feature) => (
-							<Grid2 mobile={4} tablet={4} laptop={4}>
+							<Grid2 mobile={4} tablet={4} laptop={4} key={feature.title}>
 								<>
 									<Box
 										sx={{
