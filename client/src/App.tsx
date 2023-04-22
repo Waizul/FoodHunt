@@ -4,7 +4,7 @@ import { createContext, useMemo, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { themeSettings } from "./styles/theme";
-import { Home, SingleCategory } from "./pages";
+import { Home, SingleCategory, SingleItem } from "./pages";
 import { Navbar } from "./sections";
 import { Footer } from "./sections";
 
@@ -33,7 +33,8 @@ function App() {
 						<Navbar />
 						<Routes>
 							<Route path='/' element={<Home />} />
-							<Route path='/category/:categoryName' element={<SingleCategory />} />
+							<Route path='/:categoryName' element={<SingleCategory />} />
+							<Route path='/:categoryName/:itemId' element={<SingleItem />} />
 						</Routes>
 						<Footer />
 					</BrowserRouter>

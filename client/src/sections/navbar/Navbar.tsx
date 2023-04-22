@@ -37,7 +37,7 @@ const NavItem = styled("li")(({ theme }) => ({
 	listStyleType: "none",
 	display: "flex",
 	alignItems: "center",
-	paddingBottom: theme.breakpoints.down('tablet') ? 5 : 0
+	paddingBottom: theme.breakpoints.down("tablet") ? 5 : 0,
 }));
 
 const Navbar = () => {
@@ -68,13 +68,13 @@ const Navbar = () => {
 					{matches && (
 						<>
 							<NavItem>
-								<StyledLink to={"/category/breakfast"}>Breakfast</StyledLink>
+								<StyledLink to={"/breakfast"}>Breakfast</StyledLink>
 							</NavItem>
 							<NavItem>
-								<StyledLink to={"/category/lunch"}>Lunch</StyledLink>
+								<StyledLink to={"/lunch"}>Lunch</StyledLink>
 							</NavItem>
 							<NavItem>
-								<StyledLink to={"/category/dinner"}>Dinner</StyledLink>
+								<StyledLink to={"/dinner"}>Dinner</StyledLink>
 							</NavItem>
 						</>
 					)}

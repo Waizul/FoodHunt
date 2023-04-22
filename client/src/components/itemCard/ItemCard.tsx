@@ -1,5 +1,5 @@
-import { ColorButton } from "@/styles";
-import { Expand, ExpandMore, More } from "@mui/icons-material";
+import { ColorButton, StyledLink } from "@/styles";
+import { ExpandMore } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
@@ -11,7 +11,7 @@ type Props = {
 const Image = styled("img")({
 	maxWidth: 250,
 	objectFit: "contain",
-	marginBottom: 5
+	marginBottom: 5,
 });
 const ItemCard = ({ item }: Props) => {
 	const theme = useTheme();
@@ -21,9 +21,13 @@ const ItemCard = ({ item }: Props) => {
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
-
+	console.log(item.id);
 	return (
-		<Stack alignItems={"center"} justifyContent={'center'} sx={{ height: "80vh", marginTop: "auto" }}>
+		<Stack
+			alignItems={"center"}
+			justifyContent={"center"}
+			sx={{ height: "80vh", marginTop: "auto" }}
+		>
 			<Box>
 				<Typography variant='h3' mb={2}>
 					{item.title}
@@ -41,7 +45,9 @@ const ItemCard = ({ item }: Props) => {
 					>
 						200 BDT
 					</Typography>
-					<ColorButton>Order now</ColorButton>
+					<StyledLink to={`/${item.category}/${item.id}`}>
+						<ColorButton>Order now</ColorButton>
+					</StyledLink>
 				</Stack>
 				<Box
 					sx={{

@@ -43,7 +43,7 @@ const SingleCategory = () => {
 					{items.length &&
 						items.map((item) => (
 							<Grid2 mobile={4} tablet={4} laptop={4} key={item.id} mb={10}>
-								<ItemCard item={item} />
+								<ItemCard item={item} categoryName={categoryName} />
 							</Grid2>
 						))}
 				</Grid2>
