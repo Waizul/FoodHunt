@@ -24,7 +24,7 @@ const ItemCard = ({ item }: Props) => {
 	console.log(item.id);
 	return (
 		<Stack
-			alignItems={"center"}
+			// alignItems={"center"}
 			justifyContent={"center"}
 			sx={{ height: "80vh", marginTop: "auto" }}
 		>
@@ -41,7 +41,7 @@ const ItemCard = ({ item }: Props) => {
 					<Typography
 						color={theme.palette.primary[500]}
 						variant='h4'
-						fontSize={24}
+						fontSize={22}
 					>
 						200 BDT
 					</Typography>

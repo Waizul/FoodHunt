@@ -20,7 +20,7 @@ const Card = styled("div")(({ theme }) => ({
 		objectFit: "contain",
 	},
 	'&:hover': {
-		transform: "scale(1.03)"
+		transform: "scale(1.03)",
 	}
 }));
 
@@ -39,7 +39,7 @@ const Item = ({ item }: Props) => {
 			}}
 			onClick={() => navigate(`/${item.category}/${item.id}`)}
 		>
-			<Card sx={{}}>
+			<Card sx={{padding: 1}}>
 				<img src={item.image} alt={item.title} />
 				<Typography>{item.title}</Typography>
 				<Typography>200 BDT</Typography>

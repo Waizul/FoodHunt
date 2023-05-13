@@ -128,9 +128,9 @@ export const themeSettings = (mode: PaletteMode) => ({
 		},
 		h4: {
 			fontFamily: ["Inter", "sans-serif"].join(","),
-			fontSize: 14,
+			fontSize: 16,
 			fontWeight: 600,
-			color: tokens.grey[300],
+			color: tokens.grey[700],
 		},
 		h5: {
 			fontFamily: ["Inter", "sans-serif"].join(","),
