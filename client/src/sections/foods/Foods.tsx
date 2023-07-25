@@ -9,11 +9,11 @@ type Props = {};
 
 const Foods = (props: Props) => {
 	const [category, setCategory] = useState("breakfast");
-	const [items, setItems] = useState<Item[]>([]);
+	const [items, setItems] = useState<ItemType[]>([]);
 
 	useEffect(() => {
 		const filteredItems = foodItems.filter(
-			(item) => item.category === category
+			(item: ItemType) => item.category === category
 		);
 		setItems(filteredItems);
 	}, [category]);

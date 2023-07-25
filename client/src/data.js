@@ -19,6 +19,7 @@ export const features = [
 export const foodItems = [
 	{
 		id: 1,
+		price: 68.7876,
 		title: "Breakfast1",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
@@ -27,6 +28,7 @@ export const foodItems = [
 	},
 	{
 		id: 2,
+		price: 97.0716,
 		title: "Breakfast2",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
@@ -35,6 +37,7 @@ export const foodItems = [
 	},
 	{
 		id: 3,
+		price: 65.0451,
 		title: "Breakfast3",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
@@ -43,6 +46,7 @@ export const foodItems = [
 	},
 	{
 		id: 4,
+		price: 92.6065,
 		title: "Breakfast4",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
@@ -51,6 +55,7 @@ export const foodItems = [
 	},
 	{
 		id: 5,
+		price: 24.6418,
 		title: "Breakfast5",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
@@ -59,6 +64,7 @@ export const foodItems = [
 	},
 	{
 		id: 6,
+		price: 64.1733,
 		title: "Breakfast6",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "breakfast",
@@ -67,6 +73,7 @@ export const foodItems = [
 	},
 	{
 		id: 7,
+		price: 74.9905,
 		title: "Lunch1",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "lunch",
@@ -75,6 +82,7 @@ export const foodItems = [
 	},
 	{
 		id: 8,
+		price: 48.8493,
 		title: "Lunch2",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "lunch",
@@ -83,6 +91,7 @@ export const foodItems = [
 	},
 	{
 		id: 9,
+		price: 71.1474,
 		title: "Lunch3",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "lunch",
@@ -91,6 +100,7 @@ export const foodItems = [
 	},
 	{
 		id: 10,
+		price: 75.5968,
 		title: "Lunch4",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "lunch",
@@ -99,6 +109,7 @@ export const foodItems = [
 	},
 	{
 		id: 11,
+		price: 86.3351,
 		title: "Lunch5",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "lunch",
@@ -107,6 +118,7 @@ export const foodItems = [
 	},
 	{
 		id: 12,
+		price: 76.905,
 		title: "Lunch6",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "lunch",
@@ -115,6 +127,7 @@ export const foodItems = [
 	},
 	{
 		id: 13,
+		price: 29.0499,
 		title: "Dinner1",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "dinner",
@@ -123,6 +136,7 @@ export const foodItems = [
 	},
 	{
 		id: 14,
+		price: 80.9222,
 		title: "Dinner2",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "dinner",
@@ -131,6 +145,7 @@ export const foodItems = [
 	},
 	{
 		id: 15,
+		price: 39.0287,
 		title: "Dinner3",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "dinner",
@@ -139,6 +154,7 @@ export const foodItems = [
 	},
 	{
 		id: 16,
+		price: 40.1177,
 		title: "Dinner4",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "dinner",
@@ -147,6 +163,7 @@ export const foodItems = [
 	},
 	{
 		id: 17,
+		price: 71.8267,
 		title: "Dinner5",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "dinner",
@@ -155,6 +172,7 @@ export const foodItems = [
 	},
 	{
 		id: 18,
+		price: 78.8614,
 		title: "Dinner6",
 		desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempora minima iure delectus tempore, voluptates, tenetur iste magni aliquid maiores maxime modi ipsum a laboriosam. Possimus eaque dolorem, at expedita soluta illum, unde quam, commodi numquam dolorum nemo ducimus ullam eos tempora nisi. Ratione, minima deleniti explicabo tempora eius, dolores quos vel ex eaque quas itaque. Obcaecati, tempora voluptatem! Maiores, facere recusandae. Natus recusandae, nobis placeat adipisci quidem unde sint ex atque sequi eveniet, eius illo modi dolorem repellat reiciendis beatae suscipit magni minima excepturi libero voluptatum molestiae. Autem eius nihil, architecto ex vero illo tenetur? Consequatur ducimus possimus ab.",
 		category: "dinner",

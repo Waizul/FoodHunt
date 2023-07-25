@@ -7,6 +7,8 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import { ColorButton } from "@/styles";
 import { foodItems } from "@/data.js";
+import { useAppDispatch } from "@/store";
+import { addToCart } from "@/store/slices/cartSlice";
 
 type Props = {};
 type SliderProps = {
@@ -23,15 +25,17 @@ const Slider = styled("div")<SliderProps>(({ theme, index }) => ({
 
 const SingleItem = (props: Props) => {
 	const [index, setIndex] = useState(0);
-	const [item, setItem] = useState<Item>();
-	const [categoryItems, setCategoryItems] = useState<Item[]>([]);
+	const [item, setItem] = useState<ItemType>();
+	const [categoryItems, setCategoryItems] = useState<ItemType[]>([]);
 
 	const theme = useTheme();
 	const { categoryName, itemId } = useParams();
 	const navigate = useNavigate();
+    
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		const items = foodItems.filter((item) => item.category === categoryName);
+		const items = foodItems.filter((item:ItemType) => item.category === categoryName);
 		setCategoryItems(items);
 	}, [categoryName]);
 
@@ -101,7 +105,7 @@ const SingleItem = (props: Props) => {
 							</Stack>
 						</Box>
 
-						<ColorButton>Add</ColorButton>
+						<ColorButton onClick={()=>item && dispatch(addToCart({item, qty:1}))}>Add</ColorButton>
 
 						<Box
 							sx={{ marginTop: 7, width: "max-content", position: "relative" }}

@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
-	item: Item;
+	item: ItemType;
 };
 
 const Card = styled("div")(({ theme }) => ({

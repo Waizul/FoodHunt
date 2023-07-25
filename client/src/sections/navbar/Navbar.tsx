@@ -18,6 +18,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
 
 import { StyledLink } from "@/styles";
+import { useAppSelector } from "@/store";
 
 const Nav = styled("nav")(({ theme }) => ({
 	width: "100%",
@@ -43,6 +44,9 @@ const NavItem = styled("li")(({ theme }) => ({
 const Navbar = () => {
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up("tablet"));
+    10
+	const cart = useAppSelector(state => state.cart.items)
+     console.log(cart)
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -99,7 +103,7 @@ const Navbar = () => {
 								padding: "3px",
 							}}
 						>
-							10
+							{cart?.length > 0 ? cart.length : 0}
 						</Box>
 					</Box>
 
