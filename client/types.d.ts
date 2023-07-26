@@ -14,6 +14,15 @@ type ItemType = {
 	price: number;
 };
 
+type CartItemType = {
+    id: number;
+    title: string;
+    price: number;
+    desc: string;
+    image: string;
+    qty: number;
+}
+
 type MenuType = {
 	open: boolean;
 	anchorEl: HTMLElement | null;
