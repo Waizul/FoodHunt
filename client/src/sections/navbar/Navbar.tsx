@@ -129,7 +129,7 @@ const Navbar = () => {
               {cartQty}
             </Box>
           </Box>
-            {openCart && <CartModal {...{ cartTotalQty, total, items }} />}
+            {openCart && <CartModal {...{ cartTotalQty, total, items }} setOpenCart={setOpenCart} />}
 
           {matches && (
             <>

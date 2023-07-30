@@ -1,18 +1,21 @@
 import { useAppDispatch } from "@/store";
-import { clearCart, descrease, increase } from "@/store/slices/cartSlice";
-import { Add, Remove, KeyboardBackspace, ArrowBack } from "@mui/icons-material";
-import { Box, Dialog, Grid, Input, Stack, Typography } from "@mui/material";
+import { clearCart } from "@/store/slices/cartSlice";
+import { Add, Remove, KeyboardBackspace } from "@mui/icons-material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import CartItem from "./CartItem";
 
 type CartModalType = {
   items: CartItemType[];
   cartTotalQty: number;
   total: number;
+  setOpenCart: React.Dispatch<React.SetStateAction<Boolean>>;
 };
 
 const ModalContainer = styled("div")(({ theme }) => ({
   width: 400,
-  backgroundColor: 'whitesmoke',
+  backgroundColor: "whitesmoke",
   overflow: "hidden",
   position: "fixed",
   top: "50px",
@@ -24,38 +27,17 @@ const ModalContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-const ModalCard = styled("div")(({ theme }) => ({
-  width: "100%",
-  backgroundColor: theme.palette.grey[200],
-  padding: "0.2rem 0.5rem",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  gap: "1rem",
-  marginBottom: "1rem",
-  borderRadius: "10px",
-  overflow: "hidden",
-}));
-
-const CustomInput = styled("span")(({ theme }) => ({
-  backgroundColor: "white",
-  border: "none",
-  outline: "none",
-  padding: "0.5rem 1rem",
-  borderRadius: "10px",
-  minWidth: "50px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
 export default function CartModal({
   items,
   cartTotalQty,
   total,
+  setOpenCart,
 }: CartModalType) {
   const theme = useTheme();
 
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   return (
     <ModalContainer>
@@ -65,7 +47,16 @@ export default function CartModal({
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Typography variant="h2">Your Cart</Typography>
+        <Typography
+          variant="h2"
+          sx={{ cursor: "pointer", color: "orange", fontWeight: 600 }}
+          onClick={() => {
+            setOpenCart(false);
+            navigate("/checkout");
+          }}
+        >
+          Checkout
+        </Typography>
         <Typography
           variant="h4"
           sx={{ cursor: "pointer", color: theme.palette.primary.main }}
@@ -77,45 +68,12 @@ export default function CartModal({
 
       <Grid
         sx={{
-          overflowY: items.length > 4 ? "scroll" : 'hidden',
+          overflowY: items.length > 4 ? "scroll" : "hidden",
           height: "calc(100vh - 240px)",
         }}
       >
         {items.map((item) => (
-          <ModalCard key={item.id}>
-            <Box>
-              <img src={item.image} alt={item.title} width={100} height={100} />
-            </Box>
-            <Stack gap={"0.3rem"} sx={{ minWidth: 0 }}>
-              <div>
-                <Typography variant="h4" color={theme.palette.grey[800]}>
-                  {item.title.slice(0, 20)}
-                </Typography>
-              </div>
-              <div>
-                <Typography variant="h3" color={theme.palette.primary.main}>
-                  ${(item.price * item.qty).toFixed(2)}
-                </Typography>
-              </div>
-              <div>
-                {/* <Typography variant="h4" color={theme.palette.primary.main}>{item.qty}</Typography> */}
-                <Typography variant="h5" color={theme.palette.grey[800]}>
-                  Delivery fee
-                </Typography>
-              </div>
-            </Stack>
-            <Stack direction={"row"} alignItems={"center"} gap={"0.5rem"}>
-              <Remove
-                sx={{ cursor: "pointer" }}
-                onClick={() => dispatch(descrease(item))}
-              />
-              <CustomInput>{item.qty}</CustomInput>
-              <Add
-                sx={{ cursor: "pointer" }}
-                onClick={() => dispatch(increase(item))}
-              />
-            </Stack>
-          </ModalCard>
+          <CartItem {...item} key={item.id} />
         ))}
       </Grid>
       <Box sx={{ position: "absolute", bottom: 10, width: "100%" }}>
@@ -125,6 +83,10 @@ export default function CartModal({
           gap={1}
           color={theme.palette.grey[600]}
           sx={{ cursor: "pointer" }}
+          onClick={() => {
+            setOpenCart(false);
+            navigate("/");
+          }}
         >
           <KeyboardBackspace />
           <Typography variant="body2">Continue shopping</Typography>

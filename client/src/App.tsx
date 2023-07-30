@@ -4,9 +4,10 @@ import { createContext, useMemo, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { themeSettings } from "./styles/theme";
-import { Home, SingleCategory, SingleItem } from "./pages";
+import { Checkout, Home, SingleCategory, SingleItem } from "./pages";
 import { Navbar } from "./sections";
 import { Footer } from "./sections";
+
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -35,6 +36,8 @@ function App() {
 							<Route path='/' element={<Home />} />
 							<Route path='/:categoryName' element={<SingleCategory />} />
 							<Route path='/:categoryName/:itemId' element={<SingleItem />} />
+							<Route path='/checkout' element={<Checkout />} />
+							<Route path='/payment' element={<div>Payment</div>} />
 						</Routes>
 						<Footer />
 					</BrowserRouter>

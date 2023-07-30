@@ -5,7 +5,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
 
 type Props = {
-	item: Item;
+	item: ItemType;
 };
 
 const Image = styled("img")({

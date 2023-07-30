@@ -23,6 +23,11 @@ const Slider = styled("div")<SliderProps>(({ theme, index }) => ({
   transition: "transform 1s ease",
 }));
 
+const Image = styled("img")(() => ({
+  width: "100%",
+  height: "100%",
+  objectFit: "contain",
+}));
 const SingleItem = (props: Props) => {
   const [index, setIndex] = useState(0);
   const [item, setItem] = useState<ItemType>();
@@ -182,13 +187,7 @@ const SingleItem = (props: Props) => {
           </Grid2>
 
           <Grid2 laptop={6} order={{ mobile: 1, tablet: 1, laptop: 2 }}>
-            <img
-              src={item?.image}
-              alt={item?.title}
-              width={"100%"}
-              height={"100%"}
-              style={{ objectFit: "contain" }}
-            />
+            <Image src={item?.image} alt={item?.title} />
           </Grid2>
         </Grid2>
       </Box>
