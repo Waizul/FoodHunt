@@ -19,7 +19,8 @@ import { useEffect, useState } from "react";
 
 import { StyledLink } from "@/styles";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { calculateTotals, cartItemsQuantity } from "@/store/slices/cartSlice";
+import { calculateTotals } from "@/store/slices/cartSlice";
+import CartModal from "@/components/cartModal/CartModal";
 
 const Nav = styled("nav")(({ theme }) => ({
   width: "100%",
@@ -46,12 +47,18 @@ const Navbar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("tablet"));
   10;
-  const {cartQty, cartTotalQty, total, items} = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch()
 
-  useEffect(() =>{
-    dispatch(calculateTotals())
-  },[items])
+  const [openCart, setOpenCart] = useState<Boolean>(false);
+
+  const { cartQty, cartTotalQty, total, items } = useAppSelector(
+    (state) => state.cart
+  );
+  
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [items]);
 
   // const cartItemsQty = useAppSelector(cartItemsQuantity);
   // console.log(cart.length, cartItemsQty);
@@ -64,8 +71,6 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  
 
   return (
     <Nav>
@@ -97,30 +102,34 @@ const Navbar = () => {
             sx={{
               position: "relative",
               top: 4,
+              cursor: "pointer",
             }}
+            onClick={() => setOpenCart(!openCart)}
           >
+            
             <ShoppingCartOutlined />
             <Box
               sx={{
                 position: "absolute",
                 top: -20,
                 right: -5,
-                color: theme.palette.primary[500],
+                color: 'white',
                 fontSize: "14px",
                 fontWeight: "600",
-                backgroundColor: theme.palette.grey[100],
+                backgroundColor: theme.palette.primary[800],
                 borderRadius: "50%",
                 padding: "2px",
                 minWidth: "100%",
-
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
+              
             >
               {cartQty}
             </Box>
           </Box>
+            {openCart && <CartModal {...{ cartTotalQty, total, items }} />}
 
           {matches && (
             <>
