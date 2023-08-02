@@ -8,21 +8,36 @@ import {
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 
-import CartModal from "@/components/cartModal/CartModal";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { Add, Remove } from "@mui/icons-material";
-import { descrease, increase } from "@/store/slices/cartSlice";
 import CartItem from "@/components/cartModal/CartItem";
 import { ColorButton } from "@/styles";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Checkout = () => {
+  const [inputValue, setInputValue] = useState<Object>({});
+
   const theme = useTheme();
 
   const { items, cartTotalQty, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
+
+  const handleFormInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+
+    setInputValue((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+
+    console.log(inputValue);
+  };
 
   return (
     <section className="section">
@@ -33,7 +48,7 @@ const Checkout = () => {
             paddingInline: 2,
           },
           width: "100%",
-          marginTop: "3rem",
+          marginTop: "2rem",
         }}
       >
         <Grid container spacing={4}>
@@ -45,45 +60,60 @@ const Checkout = () => {
                 <Stack gap={1}>
                   <TextField
                     id="standard-basic"
+                    name="name"
                     label="Name"
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
+                    name="email"
+                    type="email"
                     label="Email"
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
+                    name="phone"
                     label="Phone"
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
+                    name="houseNo"
                     label="House No."
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
+                    name="street"
                     label="Street"
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
+                    name="district"
                     label="District"
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
+                    name="extraInfo"
                     label="Add Delivery Instructions"
                     variant="filled"
                     fullWidth
+                    onChange={(e) => handleFormInput(e)}
                   />
                 </Stack>
                 <ColorButton sx={{ mt: 2 }} fullWidth>
@@ -93,20 +123,18 @@ const Checkout = () => {
             </Typography>
           </Grid>
 
-          <Grid
-            sx={{
-              overflowY: items.length > 4 ? "scroll" : "hidden",
-              height: "calc(100vh - 240px)",
-            }}
-            mobile={12}
-            tablet={6}
-            item
-            order={{ mobile: 1, tablet: 2 }}
-          >
-            {items.map((item) => (
-              <CartItem {...item} key={item.id} />
-            ))}
-            <Stack gap={1} sx={{ marginTop: 4, p: "0.5rem" }}>
+          <Grid mobile={12} tablet={6} item order={{ mobile: 1, tablet: 2 }}>
+            <Box
+              sx={{
+                overflowY: items.length > 4 ? "scroll" : "hidden",
+                height: "calc(100vh - 260px)",
+              }}
+            >
+              {items.map((item) => (
+                <CartItem {...item} key={item.id} />
+              ))}
+            </Box>
+            <Stack gap={0.5} sx={{ marginTop: 1, p: "0.5rem" }}>
               <Stack
                 direction={"row"}
                 alignItems={"center"}
@@ -159,7 +187,7 @@ const Checkout = () => {
                   $ {(total + total * 0.1 + total * 0.01).toFixed(2)}
                 </Typography>
               </Stack>
-              <ColorButton onClick={() => navigate("/payment")}>
+              <ColorButton onClick={() => navigate("/payment")} sx={{ mt: 1 }}>
                 {" "}
                 Proceed to Payment
               </ColorButton>

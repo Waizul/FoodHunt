@@ -1,19 +1,20 @@
-import { Add, Remove } from "@mui/icons-material";
+import { Add, HighlightOff, Remove } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 
-import { descrease, increase } from "@/store/slices/cartSlice";
+import { descrease, increase, removeFromCart } from "@/store/slices/cartSlice";
 import { useAppDispatch } from "@/store";
 
 const ModalCard = styled("div")(({ theme }) => ({
+  position: "relative",
   width: "100%",
   backgroundColor: theme.palette.grey[200],
   padding: "0.2rem 0.5rem",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  gap: "1rem",
-  marginBottom: "1rem",
+  // gap: "1rem",
+  marginBottom: "0.5rem",
   borderRadius: "10px",
   overflow: "hidden",
 }));
@@ -69,6 +70,18 @@ const CartItem = (item: CartItemType) => {
           onClick={() => dispatch(increase(item))}
         />
       </Stack>
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          color: theme.palette.primary.main,
+          cursor: "pointer",
+        }}
+      >
+        <HighlightOff onClick={() => dispatch(removeFromCart(item.id))} />
+      </Box>
     </ModalCard>
   );
 };
