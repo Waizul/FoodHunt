@@ -3,14 +3,13 @@ import cors from "cors";
 import { config } from "dotenv";
 import mongoose from "mongoose";
 
+import itemsRoute from "./routes/items.js";
+
 config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-//middleware
-app.use(cors());
-app.use(express.json());
 
 //mongodb connection
 async function main() {
@@ -19,11 +18,12 @@ async function main() {
 }
 main();
 
-//routes
-app.get("/", async (req, res) => {
-  res.send("api");
-});
+//middleware
+app.use(cors());
+app.use(express.json());
+app.use('/api/items', itemsRoute)
+
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on http://localhost:${port}/api/items`);
 });

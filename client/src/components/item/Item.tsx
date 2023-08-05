@@ -26,6 +26,7 @@ const Card = styled("div")(({ theme }) => ({
 
 const Item = ({ item }: Props) => {
 	const navigate = useNavigate();
+	
 	return (
 		<Box
 			sx={{
@@ -37,10 +38,10 @@ const Item = ({ item }: Props) => {
 					transform: "scale(1.05)"
 				},
 			}}
-			onClick={() => navigate(`/${item.category}/${item.id}`)}
+			onClick={() => navigate(`/${item.type}/${item._id}`)}
 		>
 			<Card sx={{padding: 1}}>
-				<img src={item.image} alt={item.title} />
+				<img src={item.imgUrl} alt={item.title} />
 				<Typography>{item.title}</Typography>
 				<Typography>200 BDT</Typography>
 			</Card>

@@ -5,11 +5,11 @@ type CategoryType = {
 };
 
 type ItemType = {
-	id: number;
+	_id: number;
 	title: string;
 	desc: string;
-	category: string;
-	image: string;
+	type: string;
+	imgUrl: string;
 	ingredients: string[];
 	price: number;
 };

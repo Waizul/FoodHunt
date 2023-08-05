@@ -6,7 +6,6 @@ import { Add, ArrowLeft, ArrowRight, Remove } from "@mui/icons-material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import { ColorButton } from "@/styles";
-import { foodItems } from "@/data.js";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { addToCart } from "@/store/slices/cartSlice";
 
@@ -35,6 +34,7 @@ const SingleItem = (props: Props) => {
   const [qty, setQty] = useState<number>(1);
 
   const theme = useTheme();
+
   const { categoryName, itemId } = useParams();
   const navigate = useNavigate();
 
@@ -50,21 +50,22 @@ const SingleItem = (props: Props) => {
     }
   };
 
-  const handleDispatch = (item) => {
+  const handleDispatch = (item: ItemType) => {
     dispatch(addToCart({ item, qty }));
   };
 
-  useEffect(() => {
-    const items = foodItems.filter(
-      (item: ItemType) => item.category === categoryName
-    );
-    setCategoryItems(items);
-  }, [categoryName]);
+  // useEffect(() => {
+  //   const items = foodItems.filter(
+  //     (item: ItemType) => item.category === categoryName
+  //   );
+  //   setCategoryItems(items);
+  // }, [categoryName]);
 
-  useEffect(() => {
-    const item = foodItems.find((item) => item.id == itemId);
-    setItem(item);
-  }, [itemId]);
+  // useEffect(() => {
+  //   const item = foodItems.find((item) => item.id == itemId);
+  //   setItem(item);
+  // }, [itemId]);
+
   const handleClick = (dir: string) => {
     if (dir === "l") {
       index > 0 ? setIndex(index - 1) : setIndex(0);
