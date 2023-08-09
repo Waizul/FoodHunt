@@ -5,12 +5,12 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
+import { closeModal } from "@/store/slices/modalSlice";
 
 type CartModalType = {
   items: CartItemType[];
   cartTotalQty: number;
   total: number;
-  setOpenCart: React.Dispatch<React.SetStateAction<Boolean>>;
 };
 
 const ModalContainer = styled("div")(({ theme }) => ({
@@ -31,7 +31,6 @@ export default function CartModal({
   items,
   cartTotalQty,
   total,
-  setOpenCart,
 }: CartModalType) {
   const theme = useTheme();
 
@@ -51,7 +50,7 @@ export default function CartModal({
           variant="h2"
           sx={{ cursor: "pointer", color: "orange", fontWeight: 600 }}
           onClick={() => {
-            setOpenCart(false);
+            dispatch(closeModal());
             navigate("/checkout");
           }}
         >
@@ -84,7 +83,7 @@ export default function CartModal({
           color={theme.palette.grey[600]}
           sx={{ cursor: "pointer" }}
           onClick={() => {
-            setOpenCart(false);
+            dispatch(closeModal());
             navigate("/");
           }}
         >

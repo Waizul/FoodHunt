@@ -13,14 +13,17 @@ import CartItem from "@/components/cartModal/CartItem";
 import { ColorButton } from "@/styles";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { closeModal } from "@/store/slices/modalSlice";
 
 const Checkout = () => {
   const [inputValue, setInputValue] = useState<Object>({});
 
   const theme = useTheme();
 
-  const { items, cartTotalQty, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  const { items, cartTotalQty, total } = useAppSelector((state) => state.cart);
+  
+	const isOpen = useAppSelector(state => state.modal.isOpen)
 
   const navigate = useNavigate();
 
@@ -40,7 +43,7 @@ const Checkout = () => {
   };
 
   return (
-    <section className="section">
+    <section className="section" onClick={() => isOpen && dispatch(closeModal())}>
       <Box
         flexGrow={1}
         sx={{

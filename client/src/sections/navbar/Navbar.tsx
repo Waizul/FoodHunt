@@ -21,6 +21,7 @@ import { StyledLink } from "@/styles";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { calculateTotals } from "@/store/slices/cartSlice";
 import CartModal from "@/components/cartModal/CartModal";
+import { openModal, openOrCloseModal } from "@/store/slices/modalSlice";
 
 const Nav = styled("nav")(({ theme }) => ({
   width: "100%",
@@ -48,13 +49,13 @@ const Navbar = () => {
   const matches = useMediaQuery(theme.breakpoints.up("tablet"));
   10;
 
-  const [openCart, setOpenCart] = useState<Boolean>(false);
+  const dispatch = useAppDispatch();
 
   const { cartQty, cartTotalQty, total, items } = useAppSelector(
     (state) => state.cart
   );
-  
-  const dispatch = useAppDispatch();
+
+  const isOpen = useAppSelector((state) => state.modal.isOpen);
 
   useEffect(() => {
     dispatch(calculateTotals());
@@ -104,16 +105,15 @@ const Navbar = () => {
               top: 4,
               cursor: "pointer",
             }}
-            onClick={() => setOpenCart(!openCart)}
+            onClick={() => dispatch(openOrCloseModal())}
           >
-            
             <ShoppingCartOutlined />
             <Box
               sx={{
                 position: "absolute",
                 top: -20,
                 right: -5,
-                color: 'white',
+                color: "white",
                 fontSize: "14px",
                 fontWeight: "600",
                 backgroundColor: theme.palette.primary[800],
@@ -124,12 +124,11 @@ const Navbar = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              
             >
               {cartQty}
             </Box>
           </Box>
-            {openCart && <CartModal {...{ cartTotalQty, total, items }} setOpenCart={setOpenCart} />}
+          {isOpen && <CartModal {...{ cartTotalQty, total, items }} />}
 
           {matches && (
             <>

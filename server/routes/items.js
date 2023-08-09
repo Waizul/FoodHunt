@@ -1,10 +1,14 @@
 import express from "express";
 
-import { getItems } from "../controllers/itemController.js";
+import { getItemById, getItems, getItemsByCategory } from "../controllers/itemController.js";
 
-const route = express.Router()
+const route = express.Router();
 
 //GET
-route.get('/', getItems)
+route.get("/", getItems);
 
-export default route
+route.get("/", getItemsByCategory);
+
+route.get('/:itemId', getItemById)
+
+export default route;

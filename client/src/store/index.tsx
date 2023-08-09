@@ -3,9 +3,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import CartReducer from "./slices/cartSlice";
 import { apiSlice } from "./slices/apiSlice";
+import modalReducer from "./slices/modalSlice";
 
 const rootReducer = combineReducers({
   cart: CartReducer,
+  modal: modalReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

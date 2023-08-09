@@ -8,6 +8,8 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { ColorButton } from "@/styles";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { addToCart } from "@/store/slices/cartSlice";
+import { useGetItemByIDQuery, useGetItemsByCategoryQuery } from "@/store/slices/apiSlice";
+import { closeModal } from "@/store/slices/modalSlice";
 
 type Props = {};
 type SliderProps = {
@@ -23,13 +25,13 @@ const Slider = styled("div")<SliderProps>(({ theme, index }) => ({
 }));
 
 const Image = styled("img")(() => ({
-  width: "100%",
+  width: "10%",
   height: "100%",
   objectFit: "contain",
 }));
 const SingleItem = (props: Props) => {
   const [index, setIndex] = useState(0);
-  const [item, setItem] = useState<ItemType>();
+  // const [item, setItem] = useState<ItemType>();
   const [categoryItems, setCategoryItems] = useState<ItemType[]>([]);
   const [qty, setQty] = useState<number>(1);
 
@@ -38,9 +40,15 @@ const SingleItem = (props: Props) => {
   const { categoryName, itemId } = useParams();
   const navigate = useNavigate();
 
-  const cart = useAppSelector((state) => state.cart);
-  console.log("cart", cart);
+  const { isLoading, data } = useGetItemsByCategoryQuery(categoryName);
+  const { data: item = {} } = useGetItemByIDQuery(itemId);
+  console.log(item)
+
   const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart);
+	const isOpen = useAppSelector(state => state.modal.isOpen)
+  // console.log("cart", cart);
+  
 
   const handleQty = (sign: string) => {
     if (sign === "+") {
@@ -75,7 +83,7 @@ const SingleItem = (props: Props) => {
   };
 
   return (
-    <section className="section">
+    <section className="section" onClick={() => isOpen && dispatch(closeModal())}>
       <Box
         sx={{
           // paddingInline: theme.breakpoints.down("tablet") ? 2 : "0",
@@ -96,7 +104,7 @@ const SingleItem = (props: Props) => {
               <Typography variant="h4" mt={1} sx={{ display: "inline" }}>
                 Key ingrients:
               </Typography>
-              {item?.ingredients.map((ing) => (
+              {item?.ingredients?.map((ing) => (
                 <Typography
                   key={ing}
                   sx={{ display: "inline", textTransform: "capitalize", ml: 1 }}
@@ -158,13 +166,13 @@ const SingleItem = (props: Props) => {
                   {categoryItems.map((item) => (
                     <>
                       <img
-                        key={item.id + index}
-                        src={item.image}
+                        key={item._id + index}
+                        src={item.imgUrl}
                         width={"100px"}
                         height={"100px"}
                         alt={item.title}
                         onClick={() => {
-                          navigate(`/${categoryName}/${item.id}`);
+                          navigate(`/${categoryName}/${item._id}`);
                         }}
                       />
                     </>
@@ -188,7 +196,7 @@ const SingleItem = (props: Props) => {
           </Grid2>
 
           <Grid2 laptop={6} order={{ mobile: 1, tablet: 1, laptop: 2 }}>
-            <Image src={item?.image} alt={item?.title} />
+            <Image src={item?.imgUrl} alt={item?.title} />
           </Grid2>
         </Grid2>
       </Box>
