@@ -21,7 +21,7 @@ const ItemCard = ({ item }: Props) => {
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
-	console.log(item.id);
+	
 	return (
 		<Stack
 			// alignItems={"center"}
@@ -32,7 +32,7 @@ const ItemCard = ({ item }: Props) => {
 				<Typography variant='h3' mb={2}>
 					{item.title}
 				</Typography>
-				<Image src={item.image} alt={item.title} />
+				<Image src={item.imgUrl} alt={item.title} />
 				<Stack
 					direction={"row"}
 					alignItems={"center"}
@@ -45,7 +45,7 @@ const ItemCard = ({ item }: Props) => {
 					>
 						200 BDT
 					</Typography>
-					<StyledLink to={`/${item.category}/${item.id}`}>
+					<StyledLink to={`/${item.type}/${item._id}`}>
 						<ColorButton>Order now</ColorButton>
 					</StyledLink>
 				</Stack>

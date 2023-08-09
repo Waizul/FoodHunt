@@ -45,7 +45,7 @@ const SingleItem = (props: Props) => {
   console.log(item)
 
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart);
+  
 	const isOpen = useAppSelector(state => state.modal.isOpen)
   // console.log("cart", cart);
   

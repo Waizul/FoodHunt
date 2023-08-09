@@ -7,7 +7,7 @@ const route = express.Router();
 //GET
 route.get("/", getItems);
 
-route.get("/", getItemsByCategory);
+route.get("/category", getItemsByCategory);
 
 route.get('/:itemId', getItemById)
 

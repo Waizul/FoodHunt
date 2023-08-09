@@ -11,9 +11,9 @@ export const getItems = async (req, res) => {
 
 export const getItemsByCategory = async (req, res) => {
   const category = req.query.category;
-  console.log(category);
+  
   try {
-    const items = await Item.find({ category: category });
+    const items = await Item.find({ type: category });
     res.status(200).json(items);
     console.log(items);
   } catch (err) {
