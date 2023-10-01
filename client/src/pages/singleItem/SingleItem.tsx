@@ -8,7 +8,10 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { ColorButton } from "@/styles";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { addToCart } from "@/store/slices/cartSlice";
-import { useGetItemByIDQuery, useGetItemsByCategoryQuery } from "@/store/slices/apiSlice";
+import {
+  useGetItemByIDQuery,
+  useGetItemsByCategoryQuery,
+} from "@/store/slices/apiSlice";
 import { closeModal } from "@/store/slices/modalSlice";
 
 type Props = {};
@@ -17,22 +20,28 @@ type SliderProps = {
 };
 
 const Slider = styled("div")<SliderProps>(({ theme, index }) => ({
-  width: "100px",
+  width: "22rem",
   display: "flex",
   cursor: "pointer",
-  transform: `translateX(${-100 * index}px)`,
-  transition: "transform 1s ease",
+  transform: `translateX(${-10 * index}rem)`,
+  transition: "transform .5s ease",
 }));
 
 const Image = styled("img")(() => ({
-  width: "10%",
+  maxWidth: "40rem",
   height: "100%",
   objectFit: "contain",
 }));
+
+const MOreImage = styled("img")(() => ({
+  width: "10em",
+  height: "100%",
+  objectFit: "contain",
+}));
+
 const SingleItem = (props: Props) => {
   const [index, setIndex] = useState(0);
-  // const [item, setItem] = useState<ItemType>();
-  const [categoryItems, setCategoryItems] = useState<ItemType[]>([]);
+
   const [qty, setQty] = useState<number>(1);
 
   const theme = useTheme();
@@ -40,15 +49,15 @@ const SingleItem = (props: Props) => {
   const { categoryName, itemId } = useParams();
   const navigate = useNavigate();
 
-  const { isLoading, data } = useGetItemsByCategoryQuery(categoryName);
   const { data: item = {} } = useGetItemByIDQuery(itemId);
-  console.log(item)
+  const { isLoading, data: moreItems } =
+    useGetItemsByCategoryQuery(categoryName);
+  console.log(item, moreItems, categoryName, itemId, isLoading);
 
   const dispatch = useAppDispatch();
-  
-	const isOpen = useAppSelector(state => state.modal.isOpen)
+
+  const isOpen = useAppSelector((state) => state.modal.isOpen);
   // console.log("cart", cart);
-  
 
   const handleQty = (sign: string) => {
     if (sign === "+") {
@@ -78,12 +87,15 @@ const SingleItem = (props: Props) => {
     if (dir === "l") {
       index > 0 ? setIndex(index - 1) : setIndex(0);
     } else {
-      index < categoryItems.length ? setIndex(index + 1) : setIndex(0);
+      index < moreItems.length - 2 ? setIndex(index + 1) : setIndex(0);
     }
   };
 
   return (
-    <section className="section" onClick={() => isOpen && dispatch(closeModal())}>
+    <section
+      className="section"
+      onClick={() => isOpen && dispatch(closeModal())}
+    >
       <Box
         sx={{
           // paddingInline: theme.breakpoints.down("tablet") ? 2 : "0",
@@ -93,106 +105,133 @@ const SingleItem = (props: Props) => {
         }}
       >
         <Grid2 container spacing={2}>
-          <Grid2 laptop={6} order={{ mobile: 2, tablet: 2, laptop: 1 }}>
-            <Typography variant="h2" mb={1}>
-              {item?.title}
-            </Typography>
-
-            <Typography>{item?.desc}</Typography>
-
-            <Box>
-              <Typography variant="h4" mt={1} sx={{ display: "inline" }}>
-                Key ingrients:
-              </Typography>
-              {item?.ingredients?.map((ing) => (
-                <Typography
-                  key={ing}
-                  sx={{ display: "inline", textTransform: "capitalize", ml: 1 }}
-                >
-                  {ing}
+          <Grid2 laptop={6} order={{ mobile: 2, tablet: 2, laptop: 1 }}
+          sx={{
+            [theme.breakpoints.up("tablet")] : {
+              height: "90vh",
+            }
+          }}>
+            <Stack height={'100%'} justifyContent={"space-between"} >
+              <div>
+                <Typography variant="h2" mb={1}>
+                  {item?.title}
                 </Typography>
-              ))}
-            </Box>
 
-            <Box>
-              <Stack
-                direction={"row"}
-                alignItems={"center"}
-                spacing={2}
-                my={2}
-                ml={1}
-              >
-                <Typography fontWeight={700} fontSize={25}>
-                  $55
-                </Typography>
-                <Stack
-                  direction={"row"}
-                  spacing={1}
-                  sx={{ border: "1px solid gray", borderRadius: 20, p: 0.3 }}
-                >
-                  <Remove
-                    sx={{ cursor: "pointer" }}
-                    onClick={() => handleQty("-")}
-                  />
-                  <Typography fontWeight={700}>{qty}</Typography>
-                  <Add
-                    sx={{ color: "red", cursor: "pointer" }}
-                    onClick={() => handleQty("+")}
-                  />
-                </Stack>
-              </Stack>
-            </Box>
+                <Typography>{item?.desc}</Typography>
 
-            <ColorButton onClick={() => handleDispatch(item)}>Add</ColorButton>
-
-            <Box
-              sx={{ marginTop: 7, width: "max-content", position: "relative" }}
-            >
-              <IconButton
-                onClick={() => handleClick("l")}
-                sx={{
-                  cursor: "pointer",
-                  position: "absolute",
-                  top: 0,
-                  left: -25,
-                  bottom: 0,
-                  zIndex: 10,
-                }}
-              >
-                {index === 0 ? "" : <ArrowLeft sx={{ fontSize: 30 }} />}
-              </IconButton>
-              <Box sx={{ width: "200px", marginLeft: 1, overflow: "hidden" }}>
-                <Slider index={index}>
-                  {categoryItems.map((item) => (
-                    <>
-                      <img
-                        key={item._id + index}
-                        src={item.imgUrl}
-                        width={"100px"}
-                        height={"100px"}
-                        alt={item.title}
-                        onClick={() => {
-                          navigate(`/${categoryName}/${item._id}`);
-                        }}
-                      />
-                    </>
+                <Box>
+                  <Typography variant="h4" mt={1} sx={{ display: "inline" }}>
+                    Key ingrients:
+                  </Typography>
+                  {item?.ingredients?.map((ing:any) => (
+                    <Typography
+                      key={ing}
+                      sx={{
+                        display: "inline",
+                        textTransform: "capitalize",
+                        ml: 1,
+                      }}
+                    >
+                      {ing}
+                    </Typography>
                   ))}
-                </Slider>
-              </Box>
-              <IconButton
-                onClick={() => handleClick("r")}
-                sx={{
-                  cursor: "pointer",
-                  position: "absolute",
-                  top: 0,
-                  right: -30,
-                  bottom: 0,
-                  zIndex: 10,
-                }}
-              >
-                <ArrowRight fontSize="large" sx={{ fontSize: 30 }} />
-              </IconButton>
-            </Box>
+                </Box>
+
+                <Box>
+                  <Stack
+                    direction={"row"}
+                    alignItems={"center"}
+                    spacing={2}
+                    my={2}
+                    ml={1}
+                  >
+                    <Typography fontWeight={700} fontSize={25}>
+                      $55
+                    </Typography>
+                    <Stack
+                      direction={"row"}
+                      spacing={1}
+                      sx={{
+                        border: "1px solid gray",
+                        borderRadius: 20,
+                        p: 0.3,
+                      }}
+                    >
+                      <Remove
+                        sx={{ cursor: "pointer" }}
+                        onClick={() => handleQty("-")}
+                      />
+                      <Typography fontWeight={700}>{qty}</Typography>
+                      <Add
+                        sx={{ color: "red", cursor: "pointer" }}
+                        onClick={() => handleQty("+")}
+                      />
+                    </Stack>
+                  </Stack>
+                </Box>
+
+                <ColorButton onClick={() => handleDispatch(item)}>
+                  Add
+                </ColorButton>
+              </div>
+              <div>
+                <Box
+                  sx={{
+                    marginTop: 7,
+                    width: "max-content",
+                    position: "relative",
+                  }}
+                >
+                  <Typography variant="h3" mb={3}>
+                    More items:
+                  </Typography>
+                  <IconButton
+                    onClick={() => handleClick("l")}
+                    sx={{
+                      cursor: "pointer",
+                      position: "absolute",
+                      top: 40,
+                      left: -25,
+                      bottom: 0,
+                      zIndex: 10,
+                    }}
+                  >
+                    {index === 0 ? "" : <ArrowLeft sx={{ fontSize: 30 }} />}
+                  </IconButton>
+                  <Box
+                    sx={{ width: "20rem", marginLeft: 1, overflow: "hidden" }}
+                  >
+                    <Slider index={index}>
+                      {moreItems?.map((item: ItemType) => (
+                        <>
+                          <MOreImage
+                            key={item._id + index}
+                            src={item.imgUrl}
+                            alt={item.title}
+                            onClick={() => {
+                              navigate(`/${categoryName}/${item._id}`);
+                            }}
+                          />
+                        </>
+                      ))}
+                    </Slider>
+                  </Box>
+                  <IconButton
+                    onClick={() => handleClick("r")}
+                    sx={{
+                      cursor: "pointer",
+                      position: "absolute",
+                      top: 40,
+                      right: -30,
+                      bottom: 0,
+                      zIndex: 10,
+                    }}
+                  >
+                    <ArrowRight fontSize="large" sx={{ fontSize: 30 }} />
+                  </IconButton>
+                </Box>
+              </div>
+            </Stack>
           </Grid2>
 
           <Grid2 laptop={6} order={{ mobile: 1, tablet: 1, laptop: 2 }}>

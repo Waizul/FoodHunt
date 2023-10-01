@@ -2,5 +2,7 @@ implementation of nodes server with express
 implementation of authentication with google auth,
 backend server with mongodb data storage
 redux toolkit with with rtk query
+dark mode switch
+
 
 

@@ -16,7 +16,7 @@ const SingleCategory = () => {
   const isOpen = useAppSelector((state) => state.modal.isOpen);
 
   const { isLoading, data } = useGetItemsByCategoryQuery(categoryName);
-
+console.log(data)
   return (
     <section
       className="section"
@@ -31,15 +31,15 @@ const SingleCategory = () => {
           width: "100%",
         }}
       >
-        <Typography variant="h3">
-          <Typography
+        <Typography >
+          <Typography variant="h3"
             textTransform={"capitalize"}
             mr={0.7}
             sx={{ display: "inline" }}
           >
             {categoryName}
           </Typography>
-          items we offer
+          items we offer:
         </Typography>
         <Grid2
           container
