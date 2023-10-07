@@ -11,11 +11,25 @@ export const getItems = async (req, res) => {
 
 export const getItemsByCategory = async (req, res) => {
   const category = req.query.category;
-  
+
   try {
     const items = await Item.find({ type: category });
     res.status(200).json(items);
     console.log(items);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getItemByName = async (req, res) => {
+  const name = req.query.name;
+
+  try {
+    if (name) {
+      const item = await Item.find({ title: name });
+      console.log(item);
+      res.status(200).json(item);
+    }
   } catch (err) {
     console.log(err);
   }
@@ -31,3 +45,4 @@ export const getItemById = async (req, res) => {
     console.log(err);
   }
 };
+

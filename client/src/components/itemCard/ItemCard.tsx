@@ -36,7 +36,9 @@ const ItemCard = ({ item }: Props) => {
 				<Stack
 					direction={"row"}
 					alignItems={"center"}
-					justifyContent={"space-between"}
+					gap={5}
+					mt={2}
+					mb={1}
 				>
 					<Typography
 						color={theme.palette.primary[500]}
