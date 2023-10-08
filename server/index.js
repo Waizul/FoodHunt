@@ -4,6 +4,7 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 
 import itemsRoute from "./routes/items.js";
+import paymentRoute from "./routes/payment.js"
 
 config();
 
@@ -22,6 +23,7 @@ main();
 app.use(cors());
 app.use(express.json());
 app.use('/api/items', itemsRoute)
+app.use('/api/payment', paymentRoute)
 
 
 app.listen(port, () => {

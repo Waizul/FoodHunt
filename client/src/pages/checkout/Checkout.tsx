@@ -14,16 +14,31 @@ import { ColorButton } from "@/styles";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { closeModal } from "@/store/slices/modalSlice";
+import useAuth from "@/hooks/useAuth";
+
+
 
 const Checkout = () => {
-  const [inputValue, setInputValue] = useState<Object>({});
-
+  const { user } = useAuth();
+  const initialInputValue = {
+    name: user.displayName,
+    email: user.email,
+    phoneNumber: user.phoneNumber,
+    houseNo: "",
+    street: "",
+    district: "",
+    extraInfo: "",
+  };
+  const [inputValue, setInputValue] = useState<Object>(initialInputValue);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+   console.log(user.email)
   const theme = useTheme();
+
 
   const dispatch = useAppDispatch();
   const { items, cartTotalQty, total } = useAppSelector((state) => state.cart);
-  
-	const isOpen = useAppSelector(state => state.modal.isOpen)
+
+  const isOpen = useAppSelector((state) => state.modal.isOpen);
 
   const navigate = useNavigate();
 
@@ -42,8 +57,20 @@ const Checkout = () => {
     console.log(inputValue);
   };
 
+  const handleSaveAddress = (e) => {
+    e.preventDefault();
+    const { name, email, houseNo, street, district } = inputValue;
+    
+    if (name && email && houseNo && street && district) {
+      setIsChecked(true);
+    }
+  };
+
   return (
-    <section className="section" onClick={() => isOpen && dispatch(closeModal())}>
+    <section
+      className="section"
+      onClick={() => isOpen && dispatch(closeModal())}
+    >
       <Box
         flexGrow={1}
         sx={{
@@ -64,23 +91,28 @@ const Checkout = () => {
                   <TextField
                     id="standard-basic"
                     name="name"
+                    value={user.displayName || ""}
                     label="Name"
                     variant="filled"
                     fullWidth
                     onChange={(e) => handleFormInput(e)}
+                    required
                   />
                   <TextField
                     id="standard-basic"
                     name="email"
                     type="email"
+                    value={user.email}
                     label="Email"
                     variant="filled"
                     fullWidth
+                    required
                     onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
                     id="standard-basic"
-                    name="phone"
+                    name="phoneNumber"
+                    value={user.phoneNumber}
                     label="Phone"
                     variant="filled"
                     fullWidth
@@ -92,6 +124,7 @@ const Checkout = () => {
                     label="House No."
                     variant="filled"
                     fullWidth
+                    required
                     onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
@@ -100,6 +133,7 @@ const Checkout = () => {
                     label="Street"
                     variant="filled"
                     fullWidth
+                    required
                     onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
@@ -108,6 +142,7 @@ const Checkout = () => {
                     label="District"
                     variant="filled"
                     fullWidth
+                    required
                     onChange={(e) => handleFormInput(e)}
                   />
                   <TextField
@@ -119,7 +154,12 @@ const Checkout = () => {
                     onChange={(e) => handleFormInput(e)}
                   />
                 </Stack>
-                <ColorButton sx={{ mt: 2 }} fullWidth>
+                <ColorButton
+                  sx={{ mt: 2 }}
+                  fullWidth
+                  onClick={handleSaveAddress}
+                  type="submit"
+                >
                   Save and Continue
                 </ColorButton>
               </Box>
@@ -190,7 +230,11 @@ const Checkout = () => {
                   $ {(total + total * 0.1 + total * 0.01).toFixed(2)}
                 </Typography>
               </Stack>
-              <ColorButton onClick={() => navigate("/payment")} sx={{ mt: 1 }}>
+              <ColorButton
+                onClick={() => navigate("/payment")}
+                sx={{ mt: 1 }}
+                disabled={!isChecked}
+              >
                 {" "}
                 Proceed to Payment
               </ColorButton>

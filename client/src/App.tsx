@@ -10,6 +10,8 @@ import { Footer } from "./sections";
 import Login from "./pages/login/Login";
 import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./pages/login/PrivteRoute";
+import Payment from "./pages/payment/Payment";
+import PaymentSuccess from "./pages/paymentSuccess/PaymentSuccess";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -44,8 +46,10 @@ function App() {
 
               <Route path="/checkout" element={<PrivateRoute><Checkout /></PrivateRoute>} />
               <Route path="/payment" element={<PrivateRoute>
-                <div>Payment</div>
+                <Payment />
               </PrivateRoute>} />
+
+              <Route path="/success" element={<PaymentSuccess />} />
             </Routes>
             <Footer />
             {/* </div> */}
