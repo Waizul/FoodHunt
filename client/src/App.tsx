@@ -9,8 +9,7 @@ import { Navbar } from "./sections";
 import { Footer } from "./sections";
 import Login from "./pages/login/Login";
 import useAuth from "./hooks/useAuth";
-
-
+import PrivateRoute from "./pages/login/PrivteRoute";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -27,9 +26,7 @@ function App() {
     }),
     []
   );
-  
-  const {user} = useAuth()
-  console.log(user)
+
   return (
     <div className="app">
       <ColorModeContext.Provider value={colorMode}>
@@ -37,23 +34,20 @@ function App() {
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             {/* <div> */}
-              <Navbar />
+            <Navbar />
 
-              <Routes>
-                
-                  <Route path="/" element={<Home />} />
-                  <Route path="/:categoryName" element={<SingleCategory />} />
-                  <Route
-                    path="/:categoryName/:itemId"
-                    element={<SingleItem />}
-                  />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/payment" element={<div>Payment</div>} />
-                
-                <Route path="/login" element={<Login />} />
-                
-              </Routes>
-              <Footer />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/:categoryName" element={<SingleCategory />} />
+              <Route path="/:categoryName/:itemId" element={<SingleItem />} />
+              <Route path="/login" element={<Login />} />
+
+              <Route path="/checkout" element={<PrivateRoute><Checkout /></PrivateRoute>} />
+              <Route path="/payment" element={<PrivateRoute>
+                <div>Payment</div>
+              </PrivateRoute>} />
+            </Routes>
+            <Footer />
             {/* </div> */}
           </BrowserRouter>
         </ThemeProvider>
