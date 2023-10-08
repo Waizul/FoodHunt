@@ -7,6 +7,10 @@ import { themeSettings } from "./styles/theme";
 import { Checkout, Home, SingleCategory, SingleItem } from "./pages";
 import { Navbar } from "./sections";
 import { Footer } from "./sections";
+import Login from "./pages/login/Login";
+import useAuth from "./hooks/useAuth";
+
+
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -23,24 +27,34 @@ function App() {
     }),
     []
   );
-
+  
+  const {user} = useAuth()
+  console.log(user)
   return (
     <div className="app">
       <ColorModeContext.Provider value={colorMode}>
         <CssBaseline />
         <ThemeProvider theme={theme}>
           <BrowserRouter>
-            <div>
+            {/* <div> */}
               <Navbar />
+
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/:categoryName" element={<SingleCategory />} />
-                <Route path="/:categoryName/:itemId" element={<SingleItem />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/payment" element={<div>Payment</div>} />
+                
+                  <Route path="/" element={<Home />} />
+                  <Route path="/:categoryName" element={<SingleCategory />} />
+                  <Route
+                    path="/:categoryName/:itemId"
+                    element={<SingleItem />}
+                  />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/payment" element={<div>Payment</div>} />
+                
+                <Route path="/login" element={<Login />} />
+                
               </Routes>
               <Footer />
-            </div>
+            {/* </div> */}
           </BrowserRouter>
         </ThemeProvider>
       </ColorModeContext.Provider>

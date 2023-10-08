@@ -3,17 +3,21 @@ import { ColorButton } from "@/styles";
 import { Box, useTheme, Paper, InputBase } from "@mui/material";
 import { useState } from "react";
 
-type Props = {};
+type Props = {
+  searchText: String;
+  setSearchText: React.Dispatch<React.SetStateAction<String>>;
+  setIsSearched: React.Dispatch<React.SetStateAction<Boolean>>;
+};
 
-const Search = (props: Props) => {
+const Search = ({ searchText, setSearchText, setIsSearched }: Props) => {
   const theme = useTheme();
-  const [searchText, setSearchText] = useState<String>("");
 
-  const { isLoading, data } = useGetItemsByNameQuery(searchText);
+  //   const { isLoading, data } = useGetItemsByNameQuery(searchText);
 
   const handleSearch = () => {
-    console.log(data);
+    searchText.length && setIsSearched(true);
   };
+
   return (
     <Paper
       component="form"

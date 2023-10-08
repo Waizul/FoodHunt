@@ -3,6 +3,7 @@ import {
   MenuOutlined,
   ShoppingCartOutlined,
   ArrowRightAlt,
+  Login,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -22,6 +23,8 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { calculateTotals } from "@/store/slices/cartSlice";
 import CartModal from "@/components/cartModal/CartModal";
 import { openModal, openOrCloseModal } from "@/store/slices/modalSlice";
+import useAuth from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Nav = styled("nav")(({ theme }) => ({
   width: "100%",
@@ -48,9 +51,12 @@ const Navbar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("tablet"));
   10;
+  const { user, logOut } = useAuth();
+
+  const navigate = useNavigate()
 
   const dispatch = useAppDispatch();
-
+  console.log(user);
   const { cartQty, cartTotalQty, total, items } = useAppSelector(
     (state) => state.cart
   );
@@ -72,6 +78,11 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const handleLogout = () => {
+    logOut()
+    navigate('/')
+  }
 
   return (
     <Nav>
@@ -147,7 +158,9 @@ const Navbar = () => {
                     aria-haspopup="true"
                     aria-expanded={open ? "true" : undefined}
                   >
-                    <Avatar sx={{ width: 30, height: 30, p: 0 }}></Avatar>
+                    <Avatar sx={{ width: 30, height: 30, p: 0 }} src={user?.photoUrl}>
+                      
+                    </Avatar>
                   </IconButton>
                 </Tooltip>
               </Box>
@@ -201,8 +214,17 @@ const Navbar = () => {
                 </NavItem>
 
                 <NavItem onClick={handleClose}>
-                  <Logout fontSize="small" sx={{ mr: 2 }} />
-                  Logout
+                  {user?.email ? (
+                    <Stack direction={'row'} onClick={handleLogout}>
+                      <Logout fontSize="small" sx={{ mr: 2 }} />
+                      Logout
+                    </Stack>
+                  ) : (
+                    <StyledLink to='/login' >
+                      <Login fontSize="small" sx={{ mr: 2 }} />
+                      Login
+                    </StyledLink>
+                  )}
                 </NavItem>
               </Menu>
             </>
@@ -300,8 +322,17 @@ const Navbar = () => {
                 </NavItem>
 
                 <NavItem onClick={handleClose}>
-                  <Logout fontSize="small" sx={{ mr: 1 }} />
-                  Logout
+                {user?.email ? (
+                    <Stack direction={'row'} onClick={handleLogout}>
+                      <Logout fontSize="small" sx={{ mr: 1 }} />
+                      Logout
+                    </Stack>
+                  ) : (
+                    <StyledLink to='/login' >
+                      <Login fontSize="small" sx={{ mr: 1 }} />
+                      Login
+                    </StyledLink>
+                  )}
                 </NavItem>
               </Menu>
             </>
