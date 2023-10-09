@@ -53,7 +53,7 @@ const Navbar = () => {
   10;
   const { user, logOut } = useAuth();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   console.log(user);
@@ -78,11 +78,11 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   const handleLogout = () => {
-    logOut()
-    navigate('/')
-  }
+    logOut();
+    navigate("/");
+  };
 
   return (
     <Nav>
@@ -158,9 +158,10 @@ const Navbar = () => {
                     aria-haspopup="true"
                     aria-expanded={open ? "true" : undefined}
                   >
-                    <Avatar sx={{ width: 30, height: 30, p: 0 }} src={user?.photoUrl}>
-                      
-                    </Avatar>
+                    <Avatar
+                      sx={{ width: 30, height: 30, p: 0 }}
+                      src={user?.photoUrl}
+                    ></Avatar>
                   </IconButton>
                 </Tooltip>
               </Box>
@@ -202,30 +203,40 @@ const Navbar = () => {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <NavItem onClick={handleClose}>
-                  <StyledLink to="/orders">
-                    <Avatar /> My Orders
-                  </StyledLink>
-                </NavItem>
-                <NavItem onClick={handleClose}>
-                  <StyledLink to="/accoount">
-                    <Avatar /> My account
-                  </StyledLink>
-                </NavItem>
-
-                <NavItem onClick={handleClose}>
-                  {user?.email ? (
-                    <Stack direction={'row'} onClick={handleLogout}>
-                      <Logout fontSize="small" sx={{ mr: 2 }} />
-                      Logout
-                    </Stack>
-                  ) : (
-                    <StyledLink to='/login' >
-                      <Login fontSize="small" sx={{ mr: 2 }} />
-                      Login
+                {user.isAdmin ? (
+                  <NavItem onClick={handleClose}>
+                    <StyledLink to="/dashboard/admin">
+                      <Avatar /> Dashboard
                     </StyledLink>
-                  )}
-                </NavItem>
+                  </NavItem>
+                ) : (
+                  <div>
+                    <NavItem onClick={handleClose}>
+                      <StyledLink to="/dashboard/user">
+                        <Avatar /> My Orders
+                      </StyledLink>
+                    </NavItem>
+                    <NavItem onClick={handleClose}>
+                      <StyledLink to="/dashboard/user">
+                        <Avatar /> My account
+                      </StyledLink>
+                    </NavItem>
+
+                    <NavItem onClick={handleClose}>
+                      {user?.email ? (
+                        <Stack direction={"row"} onClick={handleLogout}>
+                          <Logout fontSize="small" sx={{ mr: 2 }} />
+                          Logout
+                        </Stack>
+                      ) : (
+                        <StyledLink to="/login">
+                          <Login fontSize="small" sx={{ mr: 2 }} />
+                          Login
+                        </StyledLink>
+                      )}
+                    </NavItem>
+                  </div>
+                )}
               </Menu>
             </>
           )}
@@ -311,24 +322,24 @@ const Navbar = () => {
 
                 <Divider sx={{ mb: 1 }} />
                 <NavItem onClick={handleClose}>
-                  <StyledLink to="/orders">
+                  <StyledLink to="/dashboard/user">
                     <Avatar /> My Orders
                   </StyledLink>
                 </NavItem>
                 <NavItem onClick={handleClose}>
-                  <StyledLink to="/accoount">
+                  <StyledLink to="/dashboard/user">
                     <Avatar sx={{ width: 20, height: 20 }} /> My account
                   </StyledLink>
                 </NavItem>
 
                 <NavItem onClick={handleClose}>
-                {user?.email ? (
-                    <Stack direction={'row'} onClick={handleLogout}>
+                  {user?.email ? (
+                    <Stack direction={"row"} onClick={handleLogout}>
                       <Logout fontSize="small" sx={{ mr: 1 }} />
                       Logout
                     </Stack>
                   ) : (
-                    <StyledLink to='/login' >
+                    <StyledLink to="/login">
                       <Login fontSize="small" sx={{ mr: 1 }} />
                       Login
                     </StyledLink>

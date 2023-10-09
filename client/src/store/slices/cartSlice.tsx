@@ -29,17 +29,17 @@ const CartSlice = createSlice({
       // state.cartTotalQty += action.payload.qty;
 
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.item.id
+        (item) => item.id === action.payload.item._id
       );
       if (existingItem) {
         console.log('Item already already added to the cart!')
       } else {
         const cartItem: CartItemType = {
-          id: action.payload.item.id,
+          id: action.payload.item._id,
           title: action.payload.item.title,
           price: action.payload.item.price,
           desc: action.payload.item.desc,
-          image: action.payload.item.image,
+          image: action.payload.item.imgUrl,
           qty: action.payload.qty,
         };
         state.items.push(cartItem);

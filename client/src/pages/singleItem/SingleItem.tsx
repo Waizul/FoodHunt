@@ -33,7 +33,7 @@ const Image = styled("img")(() => ({
   objectFit: "contain",
 }));
 
-const MOreImage = styled("img")(() => ({
+const MoreImage = styled("img")(() => ({
   width: "10em",
   height: "100%",
   objectFit: "contain",
@@ -48,11 +48,11 @@ const SingleItem = (props: Props) => {
 
   const { categoryName, itemId } = useParams();
   const navigate = useNavigate();
-
   const { data: item = {} } = useGetItemByIDQuery(itemId);
+  // console.log(itemId, item)
   const { isLoading, data: moreItems } =
     useGetItemsByCategoryQuery(categoryName);
-  console.log(item, moreItems, categoryName, itemId, isLoading);
+  // console.log(item, moreItems, categoryName, itemId, isLoading);
 
   const dispatch = useAppDispatch();
 
@@ -68,6 +68,7 @@ const SingleItem = (props: Props) => {
   };
 
   const handleDispatch = (item: ItemType) => {
+    console.log(item, "item");
     dispatch(addToCart({ item, qty }));
   };
 
@@ -105,13 +106,16 @@ const SingleItem = (props: Props) => {
         }}
       >
         <Grid2 container spacing={2}>
-          <Grid2 laptop={6} order={{ mobile: 2, tablet: 2, laptop: 1 }}
-          sx={{
-            [theme.breakpoints.up("tablet")] : {
-              height: "90vh",
-            }
-          }}>
-            <Stack height={'100%'} justifyContent={"space-between"} >
+          <Grid2
+            laptop={6}
+            order={{ mobile: 2, tablet: 2, laptop: 1 }}
+            sx={{
+              [theme.breakpoints.up("tablet")]: {
+                height: "90vh",
+              },
+            }}
+          >
+            <Stack height={"100%"} justifyContent={"space-between"}>
               <div>
                 <Typography variant="h2" mb={1}>
                   {item?.title}
@@ -123,7 +127,7 @@ const SingleItem = (props: Props) => {
                   <Typography variant="h4" mt={1} sx={{ display: "inline" }}>
                     Key ingrients:
                   </Typography>
-                  {item?.ingredients?.map((ing:any) => (
+                  {item?.ingredients?.map((ing: string) => (
                     <Typography
                       key={ing}
                       sx={{
@@ -146,7 +150,7 @@ const SingleItem = (props: Props) => {
                     ml={1}
                   >
                     <Typography fontWeight={700} fontSize={25}>
-                      $55
+                      ${item.price}
                     </Typography>
                     <Stack
                       direction={"row"}
@@ -202,17 +206,16 @@ const SingleItem = (props: Props) => {
                     sx={{ width: "20rem", marginLeft: 1, overflow: "hidden" }}
                   >
                     <Slider index={index}>
-                      {moreItems?.map((item: ItemType) => (
-                        <>
-                          <MOreImage
-                            key={item._id + index}
+                      {moreItems?.map((item: ItemType, i: number) => (
+                        <div key={item._id + i}>
+                          <MoreImage
                             src={item.imgUrl}
                             alt={item.title}
                             onClick={() => {
                               navigate(`/${categoryName}/${item._id}`);
                             }}
                           />
-                        </>
+                        </div>
                       ))}
                     </Slider>
                   </Box>

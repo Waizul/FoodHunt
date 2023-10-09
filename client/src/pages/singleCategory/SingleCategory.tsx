@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { closeModal } from "@/store/slices/modalSlice";
 import { useGetItemsByCategoryQuery } from "@/store/slices/apiSlice";
 
+
 const SingleCategory = () => {
   const theme = useTheme();
   const { categoryName } = useParams();
@@ -16,7 +17,7 @@ const SingleCategory = () => {
   const isOpen = useAppSelector((state) => state.modal.isOpen);
 
   const { isLoading, data } = useGetItemsByCategoryQuery(categoryName);
-console.log(data)
+  console.log(data);
   return (
     <section
       className="section"
@@ -31,8 +32,9 @@ console.log(data)
           width: "100%",
         }}
       >
-        <Typography >
-          <Typography variant="h3"
+        <Typography>
+          <Typography
+            variant="h3"
             textTransform={"capitalize"}
             mr={0.7}
             sx={{ display: "inline" }}
@@ -52,7 +54,7 @@ console.log(data)
             <>
               {data.map((item: ItemType) => (
                 <Grid2 mobile={4} tablet={4} laptop={4} key={item._id} mb={10}>
-                  <ItemCard item={item} />
+                  <ItemCard item={item} key={item._id} />
                 </Grid2>
               ))}
             </>
