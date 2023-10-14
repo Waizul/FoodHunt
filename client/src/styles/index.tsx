@@ -15,8 +15,6 @@ export const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }));
 
 export const StyledLink = styled(Link)(({ theme }) => ({
-	color: "inherit",
-	textDecoration:'none',
 	display:'flex',
 	alignItems:'center',
 	'&:hover':{

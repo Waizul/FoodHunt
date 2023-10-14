@@ -30,7 +30,7 @@ const Features = () => {
 						spacing={{ mobile: 8, laptop: 3 }}
 						columns={{ mobile: 4, tablet: 8, laptop: 12 }}
 					>
-						{features.map((feature: Feature) => (
+						{features.map((feature: FeatureType) => (
 							<Grid2 mobile={4} tablet={4} laptop={4} key={feature.title}>
 								<>
 									<Box

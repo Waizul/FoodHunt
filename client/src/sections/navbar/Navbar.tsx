@@ -57,7 +57,7 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch();
   console.log(user);
-  const { cartQty, cartTotalQty, total, items } = useAppSelector(
+  const { cartQty, itemsQty, totalAmount, items } = useAppSelector(
     (state) => state.cart
   );
 
@@ -139,7 +139,7 @@ const Navbar = () => {
               {cartQty}
             </Box>
           </Box>
-          {isOpen && <CartModal {...{ cartTotalQty, total, items }} />}
+          {isOpen && <CartModal />}
 
           {matches && (
             <>

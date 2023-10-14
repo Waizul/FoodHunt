@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 
 import { useAppDispatch, useAppSelector } from "@/store";
 import CartItem from "@/components/cartModal/CartItem";
@@ -16,12 +16,10 @@ import { useState } from "react";
 import { closeModal } from "@/store/slices/modalSlice";
 import useAuth from "@/hooks/useAuth";
 
-
-
 const Checkout = () => {
   const { user } = useAuth();
   const initialInputValue = {
-    name: user.displayName,
+    name: user.displayName || user.username,
     email: user.email,
     phoneNumber: user.phoneNumber,
     houseNo: "",
@@ -31,13 +29,12 @@ const Checkout = () => {
   };
   const [inputValue, setInputValue] = useState<Object>(initialInputValue);
   const [isChecked, setIsChecked] = useState<boolean>(false);
-   console.log(user.email)
+  console.log(isChecked);
   const theme = useTheme();
 
-
   const dispatch = useAppDispatch();
-  const { items, cartTotalQty, total } = useAppSelector((state) => state.cart);
-
+  const cart = useAppSelector((state) => state.cart);
+  const { items, itemsQty, totalAmount } = cart;
   const isOpen = useAppSelector((state) => state.modal.isOpen);
 
   const navigate = useNavigate();
@@ -60,10 +57,15 @@ const Checkout = () => {
   const handleSaveAddress = (e) => {
     e.preventDefault();
     const { name, email, houseNo, street, district } = inputValue;
-    
+    console.log(name)
+
     if (name && email && houseNo && street && district) {
       setIsChecked(true);
     }
+  };
+
+  const handleProceedToPayment = () => {
+    navigate("/payment");
   };
 
   return (
@@ -91,7 +93,7 @@ const Checkout = () => {
                   <TextField
                     id="standard-basic"
                     name="name"
-                    value={user.displayName || ""}
+                    value={user.displayName || user.username || ""}
                     label="Name"
                     variant="filled"
                     fullWidth
@@ -184,8 +186,8 @@ const Checkout = () => {
                 justifyContent={"space-between"}
               >
                 <Typography variant="h4">Sub total</Typography>
-                <Typography variant="h4">{cartTotalQty} items</Typography>
-                <Typography variant="h4">$ {total.toFixed(2)}</Typography>
+                <Typography variant="h4">{itemsQty} items</Typography>
+                <Typography variant="h4">$ {totalAmount.toFixed(2)}</Typography>
               </Stack>
               <Stack
                 direction={"row"}
@@ -195,7 +197,7 @@ const Checkout = () => {
                 <Typography variant="h4">Tax</Typography>
 
                 <Typography variant="h4">
-                  $ {(total * 0.1).toFixed(2)}
+                  $ {(totalAmount * 0.1).toFixed(2)}
                 </Typography>
               </Stack>
               <Stack
@@ -206,7 +208,7 @@ const Checkout = () => {
                 <Typography variant="h4">Delivery fee</Typography>
 
                 <Typography variant="h4">
-                  $ {(total * 0.01).toFixed(2)}
+                  $ {(totalAmount * 0.01).toFixed(2)}
                 </Typography>
               </Stack>
               <Stack
@@ -227,11 +229,16 @@ const Checkout = () => {
                   color={theme.palette.primary.main}
                   fontWeight={800}
                 >
-                  $ {(total + total * 0.1 + total * 0.01).toFixed(2)}
+                  ${" "}
+                  {(
+                    totalAmount +
+                    totalAmount * 0.1 +
+                    totalAmount * 0.01
+                  ).toFixed(2)}
                 </Typography>
               </Stack>
               <ColorButton
-                onClick={() => navigate("/payment")}
+                onClick={handleProceedToPayment}
                 sx={{ mt: 1 }}
                 disabled={!isChecked}
               >

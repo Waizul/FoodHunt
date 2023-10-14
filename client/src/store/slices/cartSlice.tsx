@@ -8,16 +8,16 @@ type PayloadType = {
 
 type InitialState = {
   items: CartItemType[];
-  total: number;
-  cartTotalQty: number;
+  totalAmount: number;
+  itemsQty: number;
   cartQty: number;
 };
 
 const initialState: InitialState = {
   items: [],
-  total: 0,
+  totalAmount: 0,
   cartQty: 0,
-  cartTotalQty: 0,
+  itemsQty: 0,
 };
 
 const CartSlice = createSlice({
@@ -38,8 +38,7 @@ const CartSlice = createSlice({
           id: action.payload.item._id,
           title: action.payload.item.title,
           price: action.payload.item.price,
-          desc: action.payload.item.desc,
-          image: action.payload.item.imgUrl,
+          imgURL: action.payload.item.imgUrl,
           qty: action.payload.qty,
         };
         state.items.push(cartItem);
@@ -65,13 +64,13 @@ const CartSlice = createSlice({
 
     calculateTotals: (state) => {
       let qty = 0;
-      let total = 0;
+      let totalAmount = 0;
       state.items.forEach((item) => {
         qty += item.qty;
-        total += item.qty * item.price;
+        totalAmount += item.qty * item.price;
       });
-      state.cartTotalQty = qty;
-      state.total = total;
+      state.itemsQty = qty;
+      state.totalAmount = totalAmount;
       state.cartQty = state.items.length;
     },
   },

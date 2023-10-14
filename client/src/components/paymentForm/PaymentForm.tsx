@@ -3,18 +3,33 @@ import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
-  useElements
+  useElements,
 } from "@stripe/react-stripe-js";
 
-import './paymentForm.css'
+import "./paymentForm.css";
+import { useAppSelector } from "@/store";
+import axios from "axios";
+import useAuth from "@/hooks/useAuth";
 
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const cart = useAppSelector((state) => state.cart);
+  const { user } = useAuth();
+
+  const orderedItems = {
+    user_id: user._id,
+    items: cart.items,
+    itemsQty: cart.itemsQty,
+    totalAmount: cart.totalAmount,
+  };
+
+  console.log(orderedItems, user);
 
   useEffect(() => {
     if (!stripe) {
@@ -58,6 +73,8 @@ export default function PaymentForm() {
 
     setIsLoading(true);
 
+    axios.post("http://localhost:5000/api/orders", orderedItems);
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -66,11 +83,6 @@ export default function PaymentForm() {
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
@@ -81,12 +93,12 @@ export default function PaymentForm() {
   };
 
   const paymentElementOptions = {
-    layout: "tabs"
-  }
+    layout: "tabs",
+  };
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-        <h3>Pyment Form</h3>
+      <h3>Pyment Form</h3>
       <LinkAuthenticationElement
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target.value)}

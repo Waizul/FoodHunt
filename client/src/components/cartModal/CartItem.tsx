@@ -39,7 +39,7 @@ const CartItem = (item: CartItemType) => {
   return (
     <ModalCard key={item.id}>
       <Box>
-        <img src={item.image} alt={item.title} width={100} height={100} />
+        <img src={item.imgURL} alt={item.title} width={100} height={100} />
       </Box>
       <Stack gap={"0.3rem"} sx={{ minWidth: 0 }}>
         <div>

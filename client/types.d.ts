@@ -18,8 +18,7 @@ type CartItemType = {
     id: number;
     title: string;
     price: number;
-    desc: string;
-    image: string;
+    imgURL: string;
     qty: number;
 }
 

@@ -14,13 +14,11 @@ const calculateOrderAmount = (items) => {
   let tax = total * 0.1;
   let shipping = total * 0.01;
   let grandTotal = (total + tax + shipping).toFixed(2);
-  console.log(grandTotal)
   return grandTotal * 100;
 };
 
 export const paymentIntent = async (req, res) => {
   const { items } = req.body;
-  console.log(items);
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),

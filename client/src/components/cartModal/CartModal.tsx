@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { clearCart } from "@/store/slices/cartSlice";
 import { Add, Remove, KeyboardBackspace } from "@mui/icons-material";
 import { Box, Grid, Stack, Typography } from "@mui/material";
@@ -6,12 +6,6 @@ import { styled, useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { closeModal } from "@/store/slices/modalSlice";
-
-type CartModalType = {
-  items: CartItemType[];
-  cartTotalQty: number;
-  total: number;
-};
 
 const ModalContainer = styled("div")(({ theme }) => ({
   width: 400,
@@ -27,16 +21,14 @@ const ModalContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-export default function CartModal({
-  items,
-  cartTotalQty,
-  total,
-}: CartModalType) {
+export default function CartModal() {
   const theme = useTheme();
 
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
+
+  const { items, totalAmount } = useAppSelector((state) => state.cart);
 
   return (
     <ModalContainer>
@@ -114,7 +106,7 @@ export default function CartModal({
             textAlign={"center"}
             color={theme.palette.primary.main}
           >
-            ${total.toFixed(2)}
+            ${totalAmount.toFixed(2)}
           </Typography>
         </Stack>
       </Box>

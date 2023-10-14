@@ -15,7 +15,7 @@ const Payment = (props: Props) => {
   const [clientSecret, setClientSecret] = useState("");
   
   const items = useAppSelector(state => state.cart.items)
-  console.log(items)
+  
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:5000/api/payment/create-payment-intent", {

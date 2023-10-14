@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 
 import itemsRoute from "./routes/items.js";
 import paymentRoute from "./routes/payment.js"
+import orderRoute from "./routes/orders.js"
+import userRoute from "./routes/users.js"
 
 config();
 
@@ -24,6 +26,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/items', itemsRoute)
 app.use('/api/payment', paymentRoute)
+app.use('/api/orders', orderRoute)
+app.use('/api/users', userRoute)
 
 
 app.listen(port, () => {

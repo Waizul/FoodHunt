@@ -10,7 +10,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import firebaseAuthentication from '../firebase/firebase.config'
+import firebaseAuthentication from "../firebase/firebase.config";
+import axios from "axios";
 
 firebaseAuthentication();
 
@@ -21,30 +22,31 @@ const useFirebase = () => {
 
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
-  console.log(user);
 
   const signUp = (form, location, navigate) => {
     setLoading(true);
 
     const { username, email, password } = form;
-    console.log(email, password, username);
+
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then((result) => {
         const newUser = {
-          email,
-          displayName: username,
+          username: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user?.photoURL,
         };
-        console.log(newUser);
-        setUser(newUser);
-        saveUser(form, "post");
+
+        saveUser(newUser);
+
         updateProfile(auth.currentUser, {
-          displayName: username,
+          displayName: result.user.displayName,
         })
           .then(() => {})
           .catch((error) => {
             console.log(error);
           });
         setAuthError("");
+
         const destination = location?.state?.from || "/";
         navigate(destination);
       })
@@ -60,8 +62,13 @@ const useFirebase = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         // Signed in
-        const signedUser = result.user;
-        saveUser(signedUser.email, signedUser.displayName, "put");
+        const user = {
+          username: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user?.photoURL,
+        };
+
+        saveUser(user);
 
         const destination = location?.state?.from || "/";
         navigate(destination);
@@ -77,9 +84,14 @@ const useFirebase = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        const signedUser = result.user;
-        setUser(signedUser);
-        saveUser(signedUser.email, signedUser.displayName, "put");
+        const newUser = {
+          username: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+        };
+
+        saveUser(newUser);
+
         const destination = location?.state?.from || "/";
         navigate(destination);
       })
@@ -100,7 +112,13 @@ const useFirebase = () => {
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);
+        const existingUser = {
+          username: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        };
+
+        saveUser(existingUser);
       } else {
         // User is signed out
         setUser({});
@@ -111,16 +129,20 @@ const useFirebase = () => {
   }, [auth]);
 
   //save user to mongodb
-  const saveUser = (form, method) => {
-    const user = form;
-    console.log(user);
-    fetch("https://still-ocean-05548.herokuapp.com/user", {
-      method: method,
+  const saveUser = (newUser) => {
+    
+    fetch("http://localhost:5000/api/users", {
+      method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(user),
-    }).then();
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((res) => setUser(res));
+    //  const response = axios.post("http://localhost:5000/api/users", newUser);
+    //  setUser(response)
+    //  console.log('response',response.then(res => res.data))
   };
 
   return {
