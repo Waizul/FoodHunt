@@ -1,7 +1,32 @@
+import { styled } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 
 import { Link } from "react-router-dom";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
+const DataGridContainer = styled("div")(() => ({
+  ".dataGrid": {
+    backgroundColor: "white",
+  },
+  "MuiDataGrid-toolbarContainer": {
+    flexDirection: "row-reverse",
+  },
+  img: {
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    objectFit: "cover",
+  },
+  ".action": {
+    display: "flex",
+    gap: "1rem",
+
+    img: {
+      width: "20px",
+      height: "20px",
+      cursor: "pointer",
+    },
+  }
+}));
 
 type Props = {
   columns: GridColDef[];
@@ -24,6 +49,10 @@ const DataTable = (props: Props) => {
   // //   }
   // // });
 
+  function getRowId(row) {
+    return row._id;
+  }
+
   const handleDelete = (id: number) => {
     //delete the item
     // mutation.mutate(id)
@@ -36,11 +65,11 @@ const DataTable = (props: Props) => {
     renderCell: (params) => {
       return (
         <div className="action">
-          <Link to={`/${props.slug}/${params.row.id}`}>
-            <img src="/view.svg" alt="" />
+          <Link to={`/${props.slug}/${params.row._id}`}>
+            <img src="/icons/view.svg" alt="" />
           </Link>
           <div className="delete" onClick={() => handleDelete(params.row.id)}>
-            <img src="/delete.svg" alt="" />
+            <img src="/icons/delete.svg" alt="" />
           </div>
         </div>
       );
@@ -48,10 +77,11 @@ const DataTable = (props: Props) => {
   };
 
   return (
-    <div className="dataTable">
+    <DataGridContainer className="dataTable">
       <DataGrid
         className="dataGrid"
         rows={props.rows}
+        getRowId={getRowId}
         columns={[...props.columns, actionColumn]}
         initialState={{
           pagination: {
@@ -74,7 +104,7 @@ const DataTable = (props: Props) => {
         disableDensitySelector
         disableColumnSelector
       />
-    </div>
+    </DataGridContainer>
   );
 };
 
