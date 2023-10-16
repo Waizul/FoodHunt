@@ -17,7 +17,8 @@ import Products from "./sections/products/Products";
 import AdminDashboardHome from "./sections/adminDashboardHome/DashboardHome";
 import AdminRoute from "./pages/login/AdminRoute";
 import USerDashboardHome from "./sections/userDashboardHome/UserDashboardHome";
-
+import Orders from "./sections/orders/Orders";
+import Users from "./sections/users/Users";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -106,11 +107,16 @@ function App() {
                   </AdminRoute>
                 }
               >
-                <Route path="/dashboard/admin" element={<AdminDashboardHome />} />
+                <Route
+                  path="/dashboard/admin"
+                  element={<AdminDashboardHome />}
+                />
+                <Route path="/dashboard/admin/users" element={<Users />} />
                 <Route
                   path="/dashboard/admin/products"
                   element={<Products />}
                 />
+                <Route path="/dashboard/admin/orders" element={<Orders />} />
               </Route>
             </Routes>
           </BrowserRouter>

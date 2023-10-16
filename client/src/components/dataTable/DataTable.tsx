@@ -1,5 +1,6 @@
 import { styled } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -48,14 +49,16 @@ const DataTable = (props: Props) => {
   // //     queryClient.invalidateQueries([`all${props.slug}`]);
   // //   }
   // // });
-
+console.log(props.rows)
   function getRowId(row) {
     return row._id;
   }
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async(id: number) => {
     //delete the item
     // mutation.mutate(id)
+    const res = await axios.delete(`http://localhost:5000/api/users/${id}`)
+    console.log(res.status)
   };
 
   const actionColumn: GridColDef = {
@@ -68,7 +71,7 @@ const DataTable = (props: Props) => {
           <Link to={`/${props.slug}/${params.row._id}`}>
             <img src="/icons/view.svg" alt="" />
           </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
+          <div className="delete" onClick={() => handleDelete(params.row._id)}>
             <img src="/icons/delete.svg" alt="" />
           </div>
         </div>

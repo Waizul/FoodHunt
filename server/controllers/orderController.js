@@ -1,16 +1,33 @@
-import Order from '../models/order.js'
+import Order from "../models/order.js";
 
-export const saveOrder = async(req, res) => {
-    const order = req.body
-    console.log('order',order)
-    try {
-        const newOrder = new Order(order)
+export const saveOrder = async (req, res) => {
+  const orderedItems = req.body;
+  try {
+    await Promise.all(
+      orderedItems.items.map(async (item) => {
+        const order = {
+          user_id: orderedItems.user_id,
+          item_id: item._id,
+          title: item.title,
+          price: item.price,
+          imgURL: item.imgURL,
+          qty: item.qty,
+        };
 
-        const result = await newOrder.save()
-        res.status(200).json(result)
-        console.log('result',result)
-        
-    } catch (err) {
-        console.log(err)
-    }
-} 
+        const orderItem = new Order(order);
+        await orderItem.save();
+      })
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getOrders = async (req, res) => {
+  try {
+    const result = await Order.find();
+    res.status(201).json(result);
+  } catch (err) {
+    console.log(err);
+  }
+};

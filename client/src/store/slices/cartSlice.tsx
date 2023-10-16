@@ -1,5 +1,4 @@
-import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "..";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type PayloadType = {
   item: ItemType;
@@ -29,13 +28,13 @@ const CartSlice = createSlice({
       // state.cartTotalQty += action.payload.qty;
 
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.item._id
+        (item) => item._id === action.payload.item._id
       );
       if (existingItem) {
         console.log('Item already already added to the cart!')
       } else {
         const cartItem: CartItemType = {
-          id: action.payload.item._id,
+          _id: action.payload.item._id,
           title: action.payload.item.title,
           price: action.payload.item.price,
           imgURL: action.payload.item.imgUrl,
@@ -45,17 +44,17 @@ const CartSlice = createSlice({
       }
     },
     increase: (state, action: PayloadAction<CartItemType>) => {
-      const cartItem = state.items.find((item) => item.id === action.payload.id);
+      const cartItem = state.items.find((item) => item._id === action.payload._id);
       cartItem.qty += 1
     },
     descrease: (state, action: PayloadAction<CartItemType>) => {
-      const cartItem = state.items.find((item) => item.id === action.payload.id);
+      const cartItem = state.items.find((item) => item._id === action.payload._id);
       if(cartItem.qty > 1) cartItem.qty -= 1
     },
     
     removeFromCart: (state, action: PayloadAction<Number>) => {
       const itemId = action.payload;
-      state.items = state.items.filter((item) => item.id !== itemId);
+      state.items = state.items.filter((item) => item._id !== itemId);
     },
 
     clearCart: (state) => {

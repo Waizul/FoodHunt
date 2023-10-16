@@ -25,8 +25,6 @@ export default function PaymentForm() {
   const orderedItems = {
     user_id: user._id,
     items: cart.items,
-    itemsQty: cart.itemsQty,
-    totalAmount: cart.totalAmount,
   };
 
   console.log(orderedItems, user);
