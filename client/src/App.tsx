@@ -20,6 +20,7 @@ import UserDashboardHome from "./sections/userDashboardHome/UserDashboardHome";
 import Orders from "./sections/orders/Orders";
 import Users from "./sections/users/Users";
 import Product from "./sections/product/Product";
+import Profile from "./sections/profile/Profile";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -36,10 +37,6 @@ function App() {
     }),
     []
   );
-
-  const user = {
-    isAdmin: true,
-  };
 
   const Layout = () => {
     return (
@@ -97,8 +94,11 @@ function App() {
                 }
               >
                 <Route path="/dashboard/user" element={<UserDashboardHome />} />
-                <Route path="/dashboard/user/orders" element={<UserDashboardHome />} />
-                <Route path="/dashboard/user/profile" element={<>profile</>} />
+                <Route
+                  path="/dashboard/user/orders"
+                  element={<UserDashboardHome />}
+                />
+                <Route path="/dashboard/user/profile" element={<Profile />} />
               </Route>
               <Route
                 path="/dashboard/admin"
@@ -113,11 +113,11 @@ function App() {
                   element={<AdminDashboardHome />}
                 />
                 <Route path="/dashboard/admin/users" element={<Users />} />
+                <Route path="/dashboard/admin/items" element={<Products />} />
                 <Route
-                  path="/dashboard/admin/items"
-                  element={<Products />}
+                  path="/dashboard/admin/items/:id"
+                  element={<Product />}
                 />
-                <Route path="/dashboard/admin/items/:id" element={<Product />} />
                 <Route path="/dashboard/admin/orders" element={<Orders />} />
               </Route>
             </Routes>
