@@ -31,3 +31,13 @@ export const getOrders = async (req, res) => {
     console.log(err);
   }
 };
+
+export const getOrdersByUserId = async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const allOrders = await Order.find({ user_id: userId });
+    res.status(200).json(allOrders);
+  } catch (err) {
+    console.log(err);
+  }
+};

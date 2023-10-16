@@ -8,6 +8,7 @@ const LayoutBox = styled("div")(({ theme }) => ({
   "&.main": {
     color: "white",
     backgroundColor: "#2a3447",
+    minHeight: "100vh",
   },
   ".container": {
     display: "flex",

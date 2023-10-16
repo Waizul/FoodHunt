@@ -1,11 +1,10 @@
 import { useParams } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { useGetItemByIDQuery } from "@/store/slices/apiSlice";
-import { styled } from "@mui/material";
-import { Item } from "@/components";
 import { ColorButton } from "@/styles";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const ItemContainer = styled("div")(() => ({
   ".item": {},

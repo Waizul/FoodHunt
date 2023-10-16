@@ -105,19 +105,19 @@ export const userMenu = [
       {
         id: 1,
         title: "Homepage",
-        url: "/dashboard/admin",
+        url: "/dashboard/user",
         icon: "/icons/home.svg",
       },
       {
         id: 2,
         title: "Orders",
-        url: "/dashboard/admin/orders",
+        url: "/dashboard/user/orders",
         icon: "/icons/order.svg",
       },
       {
         id: 3,
         title: "Profile",
-        url: "/dashboard/admin/profile",
+        url: "/dashboard/user/profile",
         icon: "/icons/user.svg",
       },
     ],

@@ -16,7 +16,7 @@ import { Footer, Navbar } from "./sections";
 import Products from "./sections/products/Products";
 import AdminDashboardHome from "./sections/adminDashboardHome/DashboardHome";
 import AdminRoute from "./pages/login/AdminRoute";
-import USerDashboardHome from "./sections/userDashboardHome/UserDashboardHome";
+import UserDashboardHome from "./sections/userDashboardHome/UserDashboardHome";
 import Orders from "./sections/orders/Orders";
 import Users from "./sections/users/Users";
 import Product from "./sections/product/Product";
@@ -96,8 +96,8 @@ function App() {
                   </UserRoute>
                 }
               >
-                <Route path="/dashboard/user" element={<USerDashboardHome />} />
-                <Route path="/dashboard/user/orders" element={<Products />} />
+                <Route path="/dashboard/user" element={<UserDashboardHome />} />
+                <Route path="/dashboard/user/orders" element={<UserDashboardHome />} />
                 <Route path="/dashboard/user/profile" element={<>profile</>} />
               </Route>
               <Route

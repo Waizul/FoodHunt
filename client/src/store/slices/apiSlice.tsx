@@ -22,6 +22,9 @@ export const apiSlice = createApi({
     getUsers: builder.query({
       query: () => "/users",
     }),
+    getOrdersByUserID: builder.query({
+      query: (userId) => `/orders/${userId}`,
+    })
   }),
 });
 
@@ -31,5 +34,6 @@ export const {
   useGetItemByIDQuery,
   useGetItemsByNameQuery,
   useGetOrdersQuery,
-  useGetUsersQuery
+  useGetUsersQuery,
+  useGetOrdersByUserIDQuery
 } = apiSlice;
