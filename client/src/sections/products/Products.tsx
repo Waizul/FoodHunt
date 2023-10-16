@@ -55,15 +55,14 @@ const columns: GridColDef[] = [
 ];
 
 const Products = () => {
-  const { isLoading, data } = useGetItemsQuery();
-  console.log(data);
+  const { isLoading, data } = useGetItemsQuery('');
 
   return (
     <ProductsContainer className="products">
       {isLoading ? (
         <>"Loading..."</>
       ) : (
-        <DataTable slug="products" columns={columns} rows={data} />
+        <DataTable slug="items" columns={columns} rows={data} />
       )}
     </ProductsContainer>
   );

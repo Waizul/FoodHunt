@@ -30,7 +30,7 @@ export const adminMenu = [
       {
         id: 2,
         title: "Products",
-        url: "/dashboard/admin/products",
+        url: "/dashboard/admin/items",
         icon: "/icons/product.svg",
       },
       {

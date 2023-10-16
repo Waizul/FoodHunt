@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getItemById, getItems, getItemsByCategory, getItemByName } from "../controllers/itemController.js";
+import { getItemById, getItems, getItemsByCategory, getItemByName, delelteItem, updateItem } from "../controllers/itemController.js";
 
 const route = express.Router();
 
@@ -12,6 +12,10 @@ route.get("/category", getItemsByCategory);
 route.get("/name", getItemByName)
 
 route.get('/:itemId', getItemById)
+
+route.delete('/:itemId', delelteItem)
+
+route.put('/:itemId', updateItem)
 
 
 export default route;

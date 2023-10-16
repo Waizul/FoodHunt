@@ -49,18 +49,24 @@ const DataTable = (props: Props) => {
   // //     queryClient.invalidateQueries([`all${props.slug}`]);
   // //   }
   // // });
-console.log(props.rows)
+
   function getRowId(row) {
     return row._id;
   }
 
+  // const handleUpdate = async (item) => {
+  //   const res = await axios.put(`http://localhost:5000/api/${props.slug}/${item._id}`)
+  //   console.log(res.status)
+  // }
+
   const handleDelete = async(id: number) => {
     //delete the item
     // mutation.mutate(id)
-    const res = await axios.delete(`http://localhost:5000/api/users/${id}`)
+
+    const res = await axios.delete(`http://localhost:5000/api/${props.slug}/${id}`)
     console.log(res.status)
   };
-
+ 
   const actionColumn: GridColDef = {
     field: "action",
     headerName: "Action",
@@ -68,7 +74,7 @@ console.log(props.rows)
     renderCell: (params) => {
       return (
         <div className="action">
-          <Link to={`/${props.slug}/${params.row._id}`}>
+          <Link to={`/dashboard/admin/${props.slug}/${params.row._id}`}>
             <img src="/icons/view.svg" alt="" />
           </Link>
           <div className="delete" onClick={() => handleDelete(params.row._id)}>

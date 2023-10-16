@@ -43,3 +43,24 @@ export const getItemById = async (req, res) => {
     console.log(err);
   }
 };
+
+export const delelteItem = async (req, res) => {
+  try {
+    await Item.deleteById(req.params.id);
+    res.status(204).json(true);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateItem = async (req, res) => {
+  const itemId = req.params.itemId;
+  try {
+    const updatedItem = await Item.findByIdAndUpdate(itemId, req.body, {
+      new: true,
+    });
+    res.status(200).json(updatedItem);
+  } catch (err) {
+    console.log(err);
+  }
+};
