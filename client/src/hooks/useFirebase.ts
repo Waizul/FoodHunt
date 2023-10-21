@@ -141,7 +141,7 @@ const useFirebase = () => {
   //save user to mongodb
 
   const saveUser = (newUser: UserType) => {
-    fetch("http://localhost:5000/api/users", {
+    fetch("https://foodhunt-s0ym.onrender.com/api/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -150,7 +150,7 @@ const useFirebase = () => {
     })
       .then((res) => res.json())
       .then((res) => setUser(res));
-    //  const response = axios.post("http://localhost:5000/api/users", newUser);
+    //  const response = axios.post("https://foodhunt-s0ym.onrender.com/api/users", newUser);
     //  setUser(response)
     //  console.log('response',response.then(res => res.data))
   };

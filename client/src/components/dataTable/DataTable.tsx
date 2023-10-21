@@ -55,7 +55,7 @@ const DataTable = (props: Props) => {
   }
 
   // const handleUpdate = async (item) => {
-  //   const res = await axios.put(`http://localhost:5000/api/${props.slug}/${item._id}`)
+  //   const res = await axios.put(`https://foodhunt-s0ym.onrender.com/api/${props.slug}/${item._id}`)
   //   console.log(res.status)
   // }
 
@@ -63,7 +63,7 @@ const DataTable = (props: Props) => {
     //delete the item
     // mutation.mutate(id)
 
-    const res = await axios.delete(`http://localhost:5000/api/${props.slug}/${id}`)
+    const res = await axios.delete(`https://foodhunt-s0ym.onrender.com/api/${props.slug}/${id}`)
     console.log(res.status)
   };
  

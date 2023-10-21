@@ -73,7 +73,7 @@ export default function PaymentForm() {
 
     setIsLoading(true);
 
-    axios.post("http://localhost:5000/api/orders", orderedItems);
+    axios.post("https://foodhunt-s0ym.onrender.com/api/orders", orderedItems);
 
     const { error } = await stripe.confirmPayment({
       elements,

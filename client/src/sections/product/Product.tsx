@@ -70,7 +70,7 @@ const Product = () => {
     e.preventDefault();
     console.log(id);
     const res = await axios.put(
-      "http://localhost:5000/api/items/" + id,
+      "https://foodhunt-s0ym.onrender.com/api/items/" + id,
       inputValue
     );
     console.log(res);

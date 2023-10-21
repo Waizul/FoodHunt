@@ -17,7 +17,7 @@ const Payment = (props: Props) => {
   const items = useAppSelector(state => state.cart.items)
   
   useEffect(() => {
-    fetch("http://localhost:5000/api/payment/create-payment-intent", {
+    fetch("https://foodhunt-s0ym.onrender.com/api/payment/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items }),

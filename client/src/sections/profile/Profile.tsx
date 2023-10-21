@@ -57,7 +57,7 @@ const Profile = (props: Props) => {
     e.preventDefault();
 
     const res = await axios.put(
-      "http://localhost:5000/api/users/" + user._id,
+      "https://foodhunt-s0ym.onrender.com/api/users/" + user._id,
       inputValue
     );
   };
