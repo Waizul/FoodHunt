@@ -1,9 +1,7 @@
-import { useParams } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { useGetItemByIDQuery } from "@/store/slices/apiSlice";
 import { ColorButton } from "@/styles";
 import useAuth from "@/hooks/useAuth";
 
@@ -39,6 +37,7 @@ const StyledButton = styled(ColorButton)(() => ({
 type Props = {};
 
 const Profile = (props: Props) => {
+  //@ts-ignore
   const { user } = useAuth();
 
   const [inputValue, setInputValue] = useState({});

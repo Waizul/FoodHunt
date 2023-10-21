@@ -22,7 +22,7 @@ import { StyledLink } from "@/styles";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { calculateTotals } from "@/store/slices/cartSlice";
 import CartModal from "@/components/cartModal/CartModal";
-import { openModal, openOrCloseModal } from "@/store/slices/modalSlice";
+import { openOrCloseModal } from "@/store/slices/modalSlice";
 import useAuth from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -51,12 +51,13 @@ const Navbar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("tablet"));
   10;
+  //@ts-ignore
   const { user, logOut } = useAuth();
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  console.log(user);
+  
   const { cartQty, itemsQty, totalAmount, items } = useAppSelector(
     (state) => state.cart
   );
@@ -203,7 +204,7 @@ const Navbar = () => {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                {user.isAdmin ? (
+                {user?.isAdmin ? (
                   <NavItem onClick={handleClose}>
                     <StyledLink to="/dashboard/admin">
                       <Avatar /> Dashboard

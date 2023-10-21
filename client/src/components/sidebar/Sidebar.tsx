@@ -31,7 +31,7 @@ const Linked = styled(Link)(({ theme }) => ({
 }));
 
 type Props = {
-  menu: object[];
+  menu: MenusType[];
 };
 
 const Sidebar = ({ menu }: Props) => {

@@ -51,8 +51,11 @@ const Product = () => {
     setInputValue(initialValue);
   }, [isLoading]);
 
-  console.log(item.title);
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setInputValue((prev) => {
       return {
         ...prev,
@@ -65,7 +68,7 @@ const Product = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    console.log(id)
+    console.log(id);
     const res = await axios.put(
       "http://localhost:5000/api/items/" + id,
       inputValue

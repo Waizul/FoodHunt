@@ -1,12 +1,18 @@
-import React from 'react'
+import { Box } from '@mui/material'
 
 type Props = {}
 
 const PaymentSuccess = (props: Props) => {
   return (
-    <div>
+    <Box sx={{
+      display: 'grid',
+      placeContent:'center',
+      minHeight: '65%',
+    }}>
+
         <h1>Thank you for your order.</h1>
-    </div>
+    </Box>
+    
   )
 }
 

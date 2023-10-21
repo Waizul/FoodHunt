@@ -17,6 +17,7 @@ import { closeModal } from "@/store/slices/modalSlice";
 import useAuth from "@/hooks/useAuth";
 
 const Checkout = () => {
+  //@ts-ignore
   const { user } = useAuth();
   const initialInputValue = {
     name: user.displayName || user.username,
@@ -27,7 +28,8 @@ const Checkout = () => {
     district: "",
     extraInfo: "",
   };
-  const [inputValue, setInputValue] = useState<Object>(initialInputValue);
+  const [inputValue, setInputValue] =
+    useState<UserInputType>(initialInputValue);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   console.log(isChecked);
   const theme = useTheme();
@@ -50,14 +52,12 @@ const Checkout = () => {
         [e.target.name]: e.target.value,
       };
     });
-
-    console.log(inputValue);
   };
 
-  const handleSaveAddress = (e) => {
+  const handleSaveAddress = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    console.log('clicked')
     const { name, email, houseNo, street, district } = inputValue;
-    console.log(name)
 
     if (name && email && houseNo && street && district) {
       setIsChecked(true);
@@ -65,6 +65,8 @@ const Checkout = () => {
   };
 
   const handleProceedToPayment = () => {
+    console.log('clicked 2')
+
     navigate("/payment");
   };
 
@@ -97,7 +99,7 @@ const Checkout = () => {
                     label="Name"
                     variant="filled"
                     fullWidth
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                     required
                   />
                   <TextField
@@ -109,7 +111,7 @@ const Checkout = () => {
                     variant="filled"
                     fullWidth
                     required
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                   />
                   <TextField
                     id="standard-basic"
@@ -118,7 +120,7 @@ const Checkout = () => {
                     label="Phone"
                     variant="filled"
                     fullWidth
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                   />
                   <TextField
                     id="standard-basic"
@@ -127,7 +129,7 @@ const Checkout = () => {
                     variant="filled"
                     fullWidth
                     required
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                   />
                   <TextField
                     id="standard-basic"
@@ -136,7 +138,7 @@ const Checkout = () => {
                     variant="filled"
                     fullWidth
                     required
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                   />
                   <TextField
                     id="standard-basic"
@@ -145,7 +147,7 @@ const Checkout = () => {
                     variant="filled"
                     fullWidth
                     required
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                   />
                   <TextField
                     id="standard-basic"
@@ -153,7 +155,7 @@ const Checkout = () => {
                     label="Add Delivery Instructions"
                     variant="filled"
                     fullWidth
-                    onChange={(e) => handleFormInput(e)}
+                    onChange={handleFormInput}
                   />
                 </Stack>
                 <ColorButton
@@ -176,7 +178,7 @@ const Checkout = () => {
               }}
             >
               {items.map((item) => (
-                <CartItem {...item} key={item.id} />
+                <CartItem {...item} key={item._id} />
               ))}
             </Box>
             <Stack gap={0.5} sx={{ marginTop: 1, p: "0.5rem" }}>

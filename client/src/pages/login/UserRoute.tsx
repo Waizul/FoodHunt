@@ -1,7 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 
-const UserRoute = ({ children }) => {
+const UserRoute = ({ children }: { children: any }) => {
+  //@ts-ignore
   const { user, loading } = useAuth();
 
   let location = useLocation();

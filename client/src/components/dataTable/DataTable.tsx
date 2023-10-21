@@ -50,7 +50,7 @@ const DataTable = (props: Props) => {
   // //   }
   // // });
 
-  function getRowId(row) {
+  function getRowId(row: ItemType) {
     return row._id;
   }
 
@@ -89,6 +89,7 @@ const DataTable = (props: Props) => {
     <DataGridContainer className="dataTable">
       <DataGrid
         className="dataGrid"
+        //@ts-ignore
         rows={props.rows}
         getRowId={getRowId}
         columns={[...props.columns, actionColumn]}

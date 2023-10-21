@@ -17,7 +17,6 @@ const Payment = (props: Props) => {
   const items = useAppSelector(state => state.cart.items)
   
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:5000/api/payment/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -38,9 +37,11 @@ const Payment = (props: Props) => {
   return (
     <Box sx={{
       display: 'grid',
-      placeContent:'center'
+      placeContent:'center',
+      minHeight: '65%',
     }}>
       {clientSecret && (
+        //@ts-ignore
         <Elements options={options} stripe={stripePromise}>
           <PaymentForm />
         </Elements>

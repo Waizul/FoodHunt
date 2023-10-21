@@ -11,15 +11,17 @@ import { useAppSelector } from "@/store";
 import axios from "axios";
 import useAuth from "@/hooks/useAuth";
 
+
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
 
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<String | undefined>("");
   const [isLoading, setIsLoading] = useState(false);
 
   const cart = useAppSelector((state) => state.cart);
+  //@ts-ignore
   const { user } = useAuth();
 
   const orderedItems = {
@@ -60,7 +62,7 @@ export default function PaymentForm() {
     });
   }, [stripe]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -89,8 +91,8 @@ export default function PaymentForm() {
 
     setIsLoading(false);
   };
-
-  const paymentElementOptions = {
+    
+  const paymentElementOptions:any = {
     layout: "tabs",
   };
 
@@ -99,8 +101,10 @@ export default function PaymentForm() {
       <h3>Pyment Form</h3>
       <LinkAuthenticationElement
         id="link-authentication-element"
+        //@ts-ignore
         onChange={(e) => setEmail(e.target.value)}
       />
+      
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <button disabled={isLoading || !stripe || !elements} id="submit-button">
         <span id="button-text">

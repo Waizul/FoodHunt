@@ -63,7 +63,8 @@ const User = styled("div")(() => ({
 }));
 
 const DashboardNav = () => {
-  const { user } = useAuth();
+  //@ts-ignore
+  const { user} = useAuth();
 
   return (
     <Nav>

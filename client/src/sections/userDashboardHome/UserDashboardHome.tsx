@@ -1,5 +1,3 @@
-import TopClients from "@/components/topClients/TopClients";
-import { products } from "@/dashboardData";
 import { styled } from "@mui/material";
 import DataTable from "@/components/dataTable/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
@@ -65,7 +63,7 @@ const columns: GridColDef[] = [
   },
   {
     field: "qty",
-  headerName: "Quantity",
+    headerName: "Quantity",
     type: "number",
     width: 80,
   },
@@ -78,6 +76,7 @@ const columns: GridColDef[] = [
 ];
 
 const UserDashboardHome = () => {
+  //@ts-ignore
   const { user } = useAuth();
 
   const { isLoading, data } = useGetOrdersByUserIDQuery(user._id);

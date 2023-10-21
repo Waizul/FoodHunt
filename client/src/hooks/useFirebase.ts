@@ -11,18 +11,17 @@ import {
 } from "firebase/auth";
 
 import firebaseAuthentication from "../firebase/firebase.config";
-import axios from "axios";
 
 firebaseAuthentication();
 
 const useFirebase = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<UserType>();
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState("");
 
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
-
+  //@ts-ignore
   const signUp = (form, location, navigate) => {
     setLoading(true);
 
@@ -35,9 +34,10 @@ const useFirebase = () => {
           email: result.user.email,
           photoURL: result.user?.photoURL,
         };
+        //@ts-ignore
 
         saveUser(newUser);
-
+        //@ts-ignore
         updateProfile(auth.currentUser, {
           displayName: result.user.displayName,
         })
@@ -56,6 +56,7 @@ const useFirebase = () => {
       })
       .finally(() => setLoading(false));
   };
+  //@ts-ignore
 
   const signInUsingEmail = (email, password, location, navigate) => {
     // setLoading(true);
@@ -67,6 +68,7 @@ const useFirebase = () => {
           email: result.user.email,
           photoURL: result.user?.photoURL,
         };
+        //@ts-ignore
 
         saveUser(user);
 
@@ -79,6 +81,7 @@ const useFirebase = () => {
       })
       .finally(() => setLoading(false));
   };
+  //@ts-ignore
 
   const signInUsingGoogle = (location, navigate) => {
     setLoading(true);
@@ -89,6 +92,7 @@ const useFirebase = () => {
           email: result.user.email,
           photoURL: result.user.photoURL,
         };
+        //@ts-ignore
 
         saveUser(newUser);
 
@@ -104,10 +108,13 @@ const useFirebase = () => {
   const logOut = () => {
     signOut(auth)
       .then(() => {
+        //@ts-ignore
+
         setUser({});
       })
       .catch((error) => {});
   };
+  //@ts-ignore
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -117,10 +124,13 @@ const useFirebase = () => {
           email: user.email,
           photoURL: user.photoURL,
         };
+        //@ts-ignore
 
         saveUser(existingUser);
       } else {
         // User is signed out
+        //@ts-ignore
+
         setUser({});
       }
       setLoading(false);
@@ -129,8 +139,8 @@ const useFirebase = () => {
   }, [auth]);
 
   //save user to mongodb
-  const saveUser = (newUser) => {
-    
+
+  const saveUser = (newUser: UserType) => {
     fetch("http://localhost:5000/api/users", {
       method: "POST",
       headers: {

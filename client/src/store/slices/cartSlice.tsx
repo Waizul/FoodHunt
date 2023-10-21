@@ -45,10 +45,12 @@ const CartSlice = createSlice({
     },
     increase: (state, action: PayloadAction<CartItemType>) => {
       const cartItem = state.items.find((item) => item._id === action.payload._id);
+      //@ts-ignore
       cartItem.qty += 1
     },
     descrease: (state, action: PayloadAction<CartItemType>) => {
       const cartItem = state.items.find((item) => item._id === action.payload._id);
+      //@ts-ignore
       if(cartItem.qty > 1) cartItem.qty -= 1
     },
     

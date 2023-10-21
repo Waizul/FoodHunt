@@ -64,7 +64,7 @@ export default function CartModal() {
         }}
       >
         {items.map((item) => (
-          <CartItem {...item} key={item.id} />
+          <CartItem {...item} key={item._id} />
         ))}
       </Grid>
       <Box sx={{ position: "absolute", bottom: 10, width: "100%" }}>

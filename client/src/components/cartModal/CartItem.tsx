@@ -37,7 +37,7 @@ const CartItem = (item: CartItemType) => {
   const dispatch = useAppDispatch();
 
   return (
-    <ModalCard key={item.id}>
+    <ModalCard key={item._id}>
       <Box>
         <img src={item.imgURL} alt={item.title} width={100} height={100} />
       </Box>
@@ -80,7 +80,7 @@ const CartItem = (item: CartItemType) => {
           cursor: "pointer",
         }}
       >
-        <HighlightOff onClick={() => dispatch(removeFromCart(item.id))} />
+        <HighlightOff onClick={() => dispatch(removeFromCart(item._id))} />
       </Box>
     </ModalCard>
   );

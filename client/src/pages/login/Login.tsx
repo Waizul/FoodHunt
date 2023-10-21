@@ -18,16 +18,17 @@ const initialState = {
 const Login = (props: Props) => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
+  //@ts-ignore
   const { signUp, signInUsingEmail, signInUsingGoogle, authError } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signUp(form, location, navigate);
     signInUsingEmail(form.email, form.password, location, navigate);
